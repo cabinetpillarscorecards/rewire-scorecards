@@ -2,1134 +2,871 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Steering Team Scorecards - OKR Version | WFUSM Academic Cabinet</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>REWIRE 2030 Scorecards | WFUSM Academic Cabinet</title>
 <style>
-:root {
-  --blue: #003366;
-  --gold: #C99700;
-  --text: #1F2A44;
-  --bg:   #F5F6F8;
-  --green:  #2e7d32;
-  --yellow: #f9a825;
-  --red:    #c62828;
-  --highlight: #fff8e1;
+/* ============================================================
+   REWIRE 2030 — CABINET SCORECARDS
+   Plain-language version for Cabinet (MD/PhD audience)
+   Scores: 0–10 display · Target zone: 6–7
+   Grant analogy: hitting 70% of ambitious aims = excellent
+   WFU Brand Guide + Brand Bridge Nov 2025
+   ============================================================ */
+:root{
+  --bg:#F4F5F5;--surface:#FFFFFF;--tbl-hdr:#F0F1F1;--gray-lt:#E6E7E8;
+  --blue:#003B5C;--teal:#008C95;--teal-text:#007078;
+  --gold:#9E7E38;--gl:#FDC314;--gold-web:#8C6D2C;
+  --gray:#53565A;--gray-mid:#A7A8A9;
+  --text:#222222;--text-sub:#53565A;--bd:#E0E1E2;
 }
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Proxima Nova',Arial,sans-serif;min-height:100vh}
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── NAV ──────────────────────────────────────────────────── */
+.nav{background:var(--blue);border-bottom:3px solid var(--gold);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:500;gap:.75rem;flex-wrap:wrap;box-shadow:0 2px 10px rgba(0,59,92,.25)}
+.nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-logo{width:36px;height:36px;background:var(--gold);border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:11px}
+.nav-title{font-size:.9rem;font-weight:800;color:var(--gl)}
+.nav-sub{font-size:.58rem;color:rgba(255,255,255,.55);margin-top:1px}
+.nav-pills{display:flex;gap:.3rem;flex-wrap:wrap}
+.np{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;padding:5px 12px;border-radius:20px;font-size:.71rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap}
+.np:hover,.np.active{background:var(--gold);border-color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.conn-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3)}
+.conn-dot.off{background:var(--gl)}
+.conn-dot.ok{background:#4ABA7A}
+.conn-lbl{font-size:.6rem;color:rgba(255,255,255,.6);font-weight:600}
+.btn-nav{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 11px;border-radius:6px;font-size:.71rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.btn-nav:hover{background:var(--gold);border-color:var(--gold)}
 
-body {
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-}
+/* ── EXPLAINER BANNER ─────────────────────────────────────── */
+.explainer{background:var(--blue);padding:.9rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;flex-wrap:wrap;border-bottom:2px solid rgba(253,195,20,.3)}
+.explainer-text{flex:1;font-size:.8rem;color:rgba(255,255,255,.9);line-height:1.7}
+.explainer-text strong{color:var(--gl)}
+.explainer-close{background:rgba(255,255,255,.12);border:none;color:#fff;padding:5px 12px;border-radius:5px;cursor:pointer;font-size:.72rem;font-weight:700;font-family:inherit;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.explainer-close:hover{background:rgba(255,255,255,.22)}
 
-/* HEADER */
-.header {
-  background: white;
-  padding: 20px 24px 16px;
-  border-bottom: 4px solid var(--gold);
-}
-.header h1 {
-  font-size: 1.6rem;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-.header .subtitle {
-  font-size: 0.85rem;
-  color: #555;
-}
+/* ── MAIN ─────────────────────────────────────────────────── */
+.main{padding:1.35rem 1.5rem;max-width:1300px;margin:0 auto}
 
-/* DIVIDER */
-.gold-divider {
-  height: 4px;
-  background: var(--gold);
-}
+/* ── LOADING ──────────────────────────────────────────────── */
+.loading{position:fixed;inset:0;background:rgba(0,59,92,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2000}
+.loading p{color:var(--gl);font-size:.85rem;font-weight:600;margin-top:1rem}
+.spinner{width:44px;height:44px;border:4px solid rgba(253,195,20,.2);border-top-color:var(--gl);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-/* BUTTON BAR */
-.button-bar {
-  padding: 14px 24px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  background: white;
-  border-bottom: 1px solid #e0e0e0;
-}
-.btn {
-  background: var(--blue);
-  color: var(--text);
-  border: 1.5px solid var(--text);
-  padding: 8px 16px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  font-weight: 600;
-  border-radius: 2px;
-  transition: opacity .2s;
-}
-.btn:hover { opacity: .85; }
+/* ── TOAST ────────────────────────────────────────────────── */
+#toastWrap{position:fixed;bottom:1.5rem;right:1.5rem;z-index:4000;display:flex;flex-direction:column;gap:.4rem}
+.toast{padding:9px 18px;border-radius:8px;font-size:.79rem;font-weight:700;color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.2);animation:fadeIn .25s ease;font-family:inherit}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-.lock-indicator {
-  margin-left: auto;
-  font-size: 0.8rem;
-  color: var(--red);
-  font-weight: bold;
-  display: none;
-}
-.lock-indicator.visible { display: block; }
+/* ── SAVE BUTTON ──────────────────────────────────────────── */
+.save-btn{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;padding:10px 22px;border-radius:8px;font-weight:800;font-size:.84rem;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15);z-index:1500;display:none;border:none;font-family:inherit}
+.save-btn:hover{background:var(--gold-web)}
 
-/* MAIN */
-.main { padding: 20px 24px; }
+/* ── TOOLTIP ──────────────────────────────────────────────── */
+#tip{position:fixed;background:#001E38;color:#fff;padding:9px 13px;border-radius:8px;font-size:.75rem;line-height:1.55;max-width:250px;z-index:9999;pointer-events:none;opacity:0;transition:opacity .15s;box-shadow:0 4px 20px rgba(0,0,0,.3);font-family:'Proxima Nova',Arial,sans-serif}
+#tip strong{color:var(--gl)}
 
-/* SECTION CARD */
-.section-card {
-  background: white;
-  margin-bottom: 20px;
-  border-left: 6px solid var(--blue);
-  box-shadow: 0 1px 4px rgba(0,0,0,.07);
-}
-.section-header {
-  display: flex;
-  align-items: center;
-  padding: 14px 18px;
-  cursor: pointer;
-  user-select: none;
-  border-bottom: 2px solid var(--gold);
-}
-.section-header h2 {
-  font-size: 1rem;
-  color: var(--text);
-  flex: 1;
-}
-.section-header .toggle-icon {
-  font-size: 0.85rem;
-  color: #888;
-  margin-left: 8px;
-}
-.section-header .section-badge {
-  font-size: 0.72rem;
-  background: var(--blue);
-  color: white;
-  padding: 2px 8px;
-  border-radius: 10px;
-  margin-left: 10px;
-}
-.section-content {
-  padding: 16px 18px;
-  display: none;
-}
-.section-content.open { display: block; }
+/* ── INFO ICON ────────────────────────────────────────────── */
+.ii{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:rgba(0,112,120,.1);color:var(--teal-text);font-size:.6rem;font-weight:900;cursor:help;border:1px solid rgba(0,140,149,.2);margin-left:3px;vertical-align:middle;flex-shrink:0;font-style:normal;line-height:1;text-decoration:none}
 
-/* ASPIRATIONAL OKRs */
-.okr-note {
-  font-size: 0.78rem;
-  color: #666;
-  margin-bottom: 12px;
-  font-style: italic;
-  padding: 6px 10px;
-  background: #f0f4fa;
-  border-left: 3px solid var(--blue);
-}
-.goal-row {
-  border-bottom: 1px solid #eee;
-  padding: 12px 4px;
-}
-.goal-row:last-child { border-bottom: none; }
-.goal-text {
-  font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 8px;
-  color: var(--text);
-}
-.goal-meta {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.meta-item {
-  font-size: 0.78rem;
-  color: #444;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.editable-field {
-  cursor: pointer;
-  border-bottom: 1px dashed #aaa;
-  padding: 1px 3px;
-  border-radius: 2px;
-  transition: background .15s;
-}
-.editable-field:hover { background: #eef2ff; }
+/* ── PAGE HEADER ──────────────────────────────────────────── */
+.pg-hdr{margin-bottom:.9rem}
+.pg-hdr h1{font-size:1.35rem;font-weight:900;color:var(--blue);margin-bottom:.2rem}
+.pg-hdr-sub{font-size:.79rem;color:var(--text-sub);margin-bottom:.5rem}
+.pg-tags{display:flex;gap:.4rem;flex-wrap:wrap}
+.ptag{font-size:.67rem;font-weight:700;padding:3px 9px;border-radius:5px;background:var(--surface);border:1px solid var(--bd);color:var(--text-sub)}
 
-.status-btn {
-  font-size: 1.1rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  line-height: 1;
-}
-.status-btn:disabled { cursor: default; opacity: .7; }
+/* ── CABINET INPUT NEEDED ─────────────────────────────────── */
+.input-needed{background:#FFFBF0;border:1px solid rgba(158,126,56,.3);border-left:4px solid var(--gold);border-radius:10px;padding:.9rem 1.15rem;margin-bottom:1.1rem}
+.in-title{font-size:.8rem;font-weight:800;color:var(--gold-web);margin-bottom:.5rem;display:flex;align-items:center;gap:6px}
+.in-item{font-size:.79rem;color:var(--text);padding:4px 0 4px 10px;border-left:2px solid rgba(158,126,56,.3);margin:3px 0;line-height:1.5}
+.in-item strong{color:var(--blue)}
 
-/* CONFIDENCE BAR */
-.conf-wrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.conf-bar-outer {
-  width: 80px;
-  height: 8px;
-  background: #e0e0e0;
-  border-radius: 4px;
-  overflow: hidden;
-}
-.conf-bar-inner {
-  height: 100%;
-  border-radius: 4px;
-  transition: width .3s, background .3s;
-}
+/* ── SCORE LEGEND ─────────────────────────────────────────── */
+.score-legend{background:var(--surface);border:1px solid var(--bd);border-radius:10px;padding:.7rem 1rem;margin-bottom:1rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.sl-heading{font-size:.7rem;font-weight:800;color:var(--blue);white-space:nowrap;display:flex;align-items:center}
+.sl-item{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:6px}
+.sl-on-track{background:rgba(0,140,149,.07);color:var(--teal-text);border:1px solid rgba(0,140,149,.18)}
+.sl-target{background:rgba(0,112,120,.1);color:var(--teal-text);border:1.5px solid var(--teal)}
+.sl-progress{background:rgba(158,126,56,.08);color:var(--gold-web);border:1px solid rgba(158,126,56,.2)}
+.sl-attn{background:rgba(83,86,90,.07);color:var(--gray);border:1px solid rgba(83,86,90,.2)}
+.sl-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 
-.issue-btn {
-  font-size: 1rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  color: #aaa;
-  transition: color .2s;
-}
-.issue-btn.flagged { color: var(--red); }
-.issue-btn:disabled { cursor: default; }
+/* ── FILTER TABS ──────────────────────────────────────────── */
+.filter-row{display:flex;gap:.4rem;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
+.filter-lbl{font-size:.7rem;font-weight:700;color:var(--text-sub)}
+.ftab{background:var(--surface);border:1px solid var(--bd);color:var(--text-sub);padding:6px 14px;border-radius:20px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.ftab:hover{border-color:var(--blue);color:var(--blue)}
+.ftab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
 
-/* SCORECARD TABLE */
-.scorecard-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--blue);
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  margin-bottom: 10px;
-}
-.filter-bar {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.filter-bar label {
-  font-size: 0.78rem;
-  color: #555;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.82rem;
-}
-thead th {
-  background: var(--blue);
-  color: white;
-  padding: 8px 10px;
-  text-align: left;
-  font-weight: 600;
-}
-tbody tr { border-bottom: 1px solid #eee; }
-tbody tr:hover { background: #f8f9fa; }
-tbody tr.needs-attention { background: var(--highlight); }
-tbody td {
-  padding: 8px 10px;
-  vertical-align: middle;
-  color: var(--text);
-}
-.cell-editable {
-  cursor: pointer;
-  min-width: 60px;
-}
-.cell-editable:hover { text-decoration: underline dotted; }
+/* ── CARD GRID ────────────────────────────────────────────── */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
 
-/* MODAL */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,.45);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-}
-.modal-overlay.open { display: flex; }
-.modal-box {
-  background: white;
-  width: 560px;
-  max-width: 95vw;
-  padding: 24px;
-  border-top: 4px solid var(--gold);
-  box-shadow: 0 8px 32px rgba(0,0,0,.18);
-}
-.modal-box h3 {
-  font-size: 1rem;
-  color: var(--text);
-  margin-bottom: 12px;
-}
-.modal-box textarea,
-.modal-box input[type="text"] {
-  width: 100%;
-  padding: 8px 10px;
-  font-size: 0.88rem;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  margin-bottom: 14px;
-  font-family: Arial, sans-serif;
-  resize: vertical;
-}
-.modal-box textarea { height: 90px; }
-.modal-actions {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-}
-.modal-actions .btn-save {
-  background: var(--blue);
-  color: white;
-  border: none;
-  padding: 8px 18px;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 2px;
-}
-.modal-actions .btn-cancel {
-  background: white;
-  color: var(--text);
-  border: 1px solid #ccc;
-  padding: 8px 18px;
-  cursor: pointer;
-  border-radius: 2px;
-}
+/* ── PILLAR CARD ──────────────────────────────────────────── */
+.pcard{background:var(--surface);border:1px solid var(--bd);border-radius:14px;padding:1.25rem;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(0,59,92,.06)}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pcard.s-on-track::before{background:linear-gradient(90deg,var(--teal),#00B8C8)}
+.pcard.s-in-progress::before{background:linear-gradient(90deg,var(--gold),var(--gl))}
+.pcard.s-needs-attn::before{background:linear-gradient(90deg,var(--gray),#888)}
+.pcard:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,59,92,.12);border-color:rgba(0,59,92,.16)}
+.pcard:hover .card-cta{opacity:1}
+.pcard.hidden{display:none}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem;margin-bottom:.85rem}
+.card-id{display:flex;align-items:center;gap:10px}
+.c-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.c-icon.p1{background:rgba(0,140,149,.1)}.c-icon.p2{background:rgba(158,126,56,.1)}
+.c-icon.p3{background:rgba(206,184,136,.15)}.c-icon.p4{background:rgba(0,59,92,.08)}
+.card-num{font-size:.61rem;color:var(--text-sub);font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px}
+.card-name{font-size:.96rem;font-weight:800;color:var(--blue);line-height:1.2}
+.card-badges{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.badge{padding:4px 10px;border-radius:9px;font-size:.67rem;font-weight:800;white-space:nowrap}
+.badge-on-track{background:rgba(0,140,149,.1);color:var(--teal-text);border:1px solid rgba(0,140,149,.25)}
+.badge-in-progress{background:rgba(158,126,56,.1);color:var(--gold-web);border:1px solid rgba(158,126,56,.25)}
+.badge-needs-attn{background:rgba(83,86,90,.1);color:var(--gray);border:1px solid rgba(83,86,90,.2)}
+.badge-input{background:rgba(253,195,20,.1);color:var(--gold-web);border:1px solid rgba(253,195,20,.3);font-size:.63rem}
+.card-goal{font-size:.78rem;color:var(--text-sub);line-height:1.5;margin-bottom:.9rem;font-style:italic;padding-bottom:.85rem;border-bottom:1px solid var(--bd)}
+.card-score{display:flex;align-items:center;gap:.85rem;margin-bottom:.85rem}
+.score-num-big{font-size:1.7rem;font-weight:900;line-height:1}
+.score-denom{font-size:.82rem;font-weight:500;color:var(--text-sub)}
+.score-right{flex:1}
+.score-label-lg{font-size:.79rem;font-weight:800;margin-bottom:5px}
+.score-bar-track{background:var(--gray-lt);border-radius:4px;height:6px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:4px;transition:width .8s ease}
+.score-zone{font-size:.65rem;font-weight:600;margin-top:4px;color:var(--text-sub)}
+.card-cta{font-size:.69rem;color:var(--blue);font-weight:700;opacity:.5;transition:opacity .2s;text-align:right;margin-bottom:.5rem}
+.card-meta{display:flex;gap:1rem;flex-wrap:wrap;padding-top:.75rem;border-top:1px solid var(--bd)}
+.cm-lbl{color:var(--text-sub);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:1px}
+.cm-val{color:var(--text);font-size:.71rem;font-weight:700}
 
-/* OKR GUIDE */
-.guide-content { font-size: 0.85rem; line-height: 1.7; color: var(--text); }
-.guide-content h4 { color: var(--blue); margin: 12px 0 4px; }
-.guide-content ul { padding-left: 18px; }
-.guide-content li { margin-bottom: 4px; }
+/* ── DETAIL VIEW ──────────────────────────────────────────── */
+.back-btn{background:none;border:none;color:var(--gold-web);font-size:.82rem;cursor:pointer;padding:5px 0;margin-bottom:.85rem;display:inline-flex;align-items:center;gap:5px;font-weight:700;font-family:inherit}
+.back-btn:hover{color:var(--gold)}
+.breadcrumb{font-size:.74rem;color:var(--text-sub);font-weight:600;margin-bottom:1rem;padding-bottom:.65rem;border-bottom:1px solid var(--bd)}
+
+/* ACTION BOX */
+.action-box{background:#FFFBF0;border:2px solid var(--gold);border-radius:12px;padding:1rem 1.25rem;margin-bottom:1rem}
+.action-lbl{font-size:.65rem;font-weight:800;color:var(--gold-web);text-transform:uppercase;letter-spacing:.6px;margin-bottom:.3rem}
+.action-text{font-size:.88rem;color:var(--text);line-height:1.55;font-weight:500}
+
+/* PILLAR HEADER */
+.dheader{background:var(--surface);border:1px solid var(--bd);border-radius:14px;padding:1.4rem;margin-bottom:.9rem;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(0,59,92,.06)}
+.dheader::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gl))}
+.dh-main{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:.9rem}
+.dh-name{font-size:1.35rem;font-weight:900;color:var(--blue);margin-bottom:.25rem}
+.dh-rewire{font-size:.77rem;color:var(--gold-web);font-weight:600;line-height:1.4;max-width:500px}
+.dh-score-col{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+.dh-score-num{font-size:2.1rem;font-weight:900;line-height:1}
+.dh-score-lbl{font-size:.74rem;font-weight:800;text-align:right}
+.dh-score-note{font-size:.67rem;color:var(--text-sub);text-align:right;display:flex;align-items:center;justify-content:flex-end;gap:3px}
+.dh-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:.75rem;padding-top:.85rem;border-top:1px solid var(--bd)}
+.dm-lbl{font-size:.59rem;font-weight:700;color:var(--text-sub);text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+.dm-val{font-size:.79rem;font-weight:700;color:var(--text)}
+
+/* RISK / OBJ BOXES */
+.risk-box{background:#FAFAFA;border:1px solid var(--bd);border-left:3px solid var(--gray-mid);border-radius:8px;padding:.75rem 1rem;margin-bottom:.85rem}
+.risk-lbl{font-size:.6rem;font-weight:800;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.25rem}
+.risk-text{font-size:.81rem;color:var(--text);line-height:1.5}
+.obj-box{background:linear-gradient(135deg,rgba(0,59,92,.03),rgba(0,140,149,.04));border:1px solid rgba(0,59,92,.1);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem}
+.obj-lbl{font-size:.62rem;font-weight:800;color:var(--teal-text);text-transform:uppercase;letter-spacing:.8px;margin-bottom:.4rem}
+.obj-text{font-size:.92rem;font-weight:700;color:var(--blue);line-height:1.6}
+
+/* SECTION HEADERS */
+.sec-hdr{display:flex;align-items:center;gap:.65rem;margin-bottom:.75rem;flex-wrap:wrap;padding:.3rem 0}
+.sec-title{font-size:.92rem;font-weight:800;color:var(--blue);display:flex;align-items:center;gap:3px}
+.stag{font-size:.6rem;font-weight:800;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.4px}
+.stag-gold{background:rgba(158,126,56,.1);color:var(--gold-web);border:1px solid rgba(158,126,56,.2)}
+.stag-teal{background:rgba(0,140,149,.08);color:var(--teal-text);border:1px solid rgba(0,140,149,.2)}
+.sec-note{font-size:.68rem;color:var(--text-sub);margin-left:auto;font-style:italic;font-weight:600}
+
+/* TABLES — 6 columns */
+.tw{background:var(--surface);border:1px solid var(--bd);border-radius:10px;overflow:auto;margin-bottom:1rem;box-shadow:0 1px 3px rgba(0,59,92,.05)}
+table{width:100%;border-collapse:collapse;min-width:500px}
+thead tr{background:var(--tbl-hdr)}
+th{padding:10px 14px;font-size:.67rem;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--bd);white-space:nowrap;cursor:help}
+td{padding:10px 14px;font-size:.8rem;color:var(--text);border-bottom:1px solid var(--bd);vertical-align:top;line-height:1.45}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#FAFBFC}
+.kr-num{background:rgba(158,126,56,.1);color:var(--gold-web);font-weight:900;font-size:.74rem;padding:2px 7px;border-radius:4px;border:1px solid rgba(158,126,56,.2);white-space:nowrap}
+.kr-lnk{background:rgba(0,140,149,.08);color:var(--teal-text);font-size:.68rem;padding:2px 6px;border-radius:4px;border:1px solid rgba(0,140,149,.18);white-space:nowrap}
+.type-must{background:rgba(0,140,149,.08);color:var(--teal-text);font-size:.62rem;font-weight:800;padding:2px 7px;border-radius:10px;border:1px solid rgba(0,140,149,.2);white-space:nowrap;display:inline-block;margin-top:4px}
+.type-stretch{background:rgba(158,126,56,.1);color:var(--gold-web);font-size:.62rem;font-weight:800;padding:2px 7px;border-radius:10px;border:1px solid rgba(158,126,56,.25);white-space:nowrap;display:inline-block;margin-top:4px}
+.score-cell{display:flex;flex-direction:column;gap:3px}
+.score-cell-num{font-size:.88rem;font-weight:900}
+.score-cell-lbl{font-size:.63rem;font-weight:700}
+.score-cell-bar{width:48px;height:4px;background:var(--gray-lt);border-radius:2px;overflow:hidden}
+.score-cell-fill{height:100%;border-radius:2px}
+.risk-icon{cursor:help;font-size:.82rem;margin-left:5px;vertical-align:middle;opacity:.7;display:inline-block}
+.risk-icon:hover{opacity:1}
+.s-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px;vertical-align:middle}
+td[contenteditable=true]{outline:2px solid var(--gold);border-radius:3px;background:rgba(158,126,56,.04)}
+
+/* KPI CARDS */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.8rem;margin-bottom:1rem}
+.kpi-card{background:var(--surface);border:1px solid var(--bd);border-radius:9px;padding:.9rem}
+.kpi-m{font-size:.71rem;color:var(--text-sub);font-weight:600;margin-bottom:.35rem;line-height:1.35}
+.kpi-c{font-size:1.05rem;font-weight:900;color:var(--blue);margin-bottom:.2rem}
+.kpi-t{font-size:.71rem;color:var(--teal-text);font-weight:700}
+.kpi-bar{background:var(--gray-lt);border-radius:3px;height:4px;overflow:hidden;margin-top:.4rem}
+.kpi-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gl))}
+.kpi-note{font-size:.65rem;color:var(--gold-web);font-weight:700;margin-top:.3rem}
+
+/* DECISIONS */
+.dec-section{background:rgba(0,140,149,.03);border:1px solid rgba(0,140,149,.15);border-radius:12px;padding:1.1rem;margin-bottom:1rem}
+.dec-sec-title{font-size:.88rem;font-weight:800;color:var(--teal-text);margin-bottom:.85rem}
+.dec-form{background:var(--surface);border:1px solid var(--bd);border-radius:8px;padding:.85rem;margin-bottom:.8rem}
+.dec-form textarea{width:100%;background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:8px 11px;color:var(--text);font-size:.81rem;outline:none;resize:vertical;min-height:52px;margin-bottom:.5rem;font-family:inherit}
+.dec-form textarea:focus{border-color:var(--teal)}
+.dec-form-row{display:flex;gap:.45rem;flex-wrap:wrap;align-items:center}
+.dec-input{background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:7px 10px;color:var(--text);font-size:.78rem;outline:none;flex:1;min-width:100px;font-family:inherit}
+.dec-input:focus{border-color:var(--teal)}
+.dec-select{background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:7px 10px;color:var(--text);font-size:.78rem;outline:none;font-family:inherit;max-width:200px}
+.btn-log{background:var(--teal);border:none;color:#fff;padding:8px 15px;border-radius:7px;font-size:.78rem;font-weight:800;cursor:pointer;font-family:inherit;transition:background .2s;white-space:nowrap}
+.btn-log:hover{background:var(--teal-text)}
+.dec-item{background:var(--surface);border:1px solid rgba(0,140,149,.15);border-left:3px solid var(--teal);border-radius:8px;padding:.75rem;margin-bottom:.5rem;display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem}
+.dec-body{flex:1}
+.dec-date{display:inline-block;background:rgba(0,140,149,.08);color:var(--teal-text);font-size:.65rem;font-weight:800;padding:2px 7px;border-radius:4px;margin-bottom:.3rem;border:1px solid rgba(0,140,149,.15)}
+.dec-text{font-size:.81rem;color:var(--text);line-height:1.45;margin-bottom:.2rem}
+.dec-meta{font-size:.68rem;color:var(--text-sub);font-weight:600}
+.dec-kr-tag{background:rgba(0,140,149,.08);color:var(--teal-text);font-size:.65rem;padding:2px 6px;border-radius:4px;margin-left:5px;font-weight:700;border:1px solid rgba(0,140,149,.18)}
+.btn-del{background:none;border:1px solid var(--bd);color:var(--gray-mid);padding:4px 8px;border-radius:5px;font-size:.7rem;cursor:pointer;font-family:inherit;transition:all .2s;flex-shrink:0}
+.btn-del:hover{background:var(--gray-lt);color:var(--gray)}
+.dec-empty{color:var(--text-sub);font-size:.79rem;font-style:italic;padding:.35rem 0}
+.gdec-hdr{font-size:1.3rem;font-weight:900;color:var(--blue);margin-bottom:.2rem}
+.gdec-sub{font-size:.79rem;color:var(--text-sub);margin-bottom:1rem;font-weight:600}
+.pt0{background:rgba(0,140,149,.08);color:var(--teal-text);border:1px solid rgba(0,140,149,.2)}
+.pt1{background:rgba(158,126,56,.08);color:var(--gold-web);border:1px solid rgba(158,126,56,.2)}
+.pt2{background:rgba(206,184,136,.12);color:#7A5C1E;border:1px solid rgba(206,184,136,.35)}
+.pt3{background:rgba(0,59,92,.07);color:var(--blue);border:1px solid rgba(0,59,92,.18)}
+.pillar-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.67rem;font-weight:800}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gray-lt);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--gray-mid)}
 
 /* PRINT */
-@media print {
-  body { background: white; }
-  .button-bar, .filter-bar { display: none !important; }
-  .section-content { display: block !important; }
-  .section-card { page-break-inside: avoid; box-shadow: none; }
-  .modal-overlay { display: none !important; }
-  thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@media print{
+  .nav,.explainer,.score-legend,.filter-row,.save-btn,.dec-form,.back-btn,.btn-nav,.pg-tags{display:none!important}
+  #detail-view{display:block!important}
+  #dashboard-view,#decisions-view{display:none!important}
+  body{background:#fff}
+  .dheader,.pcard,.tw,.obj-box,.dec-section,.kpi-card,.risk-box{border:1px solid #ccc;break-inside:avoid}
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <h1>Steering Team Scorecards</h1>
-  <div class="subtitle">OKR Version &nbsp;|&nbsp; WFUSM Academic Cabinet &nbsp;|&nbsp; FY2026</div>
+<div id="tip"></div>
+
+<div class="loading" id="loading">
+  <div class="spinner"></div>
+  <p>Loading REWIRE 2030 Scorecards…</p>
 </div>
 
-<div class="gold-divider"></div>
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="nav-logo">R30</div>
+    <div>
+      <div class="nav-title">REWIRE 2030 SCORECARDS</div>
+      <div class="nav-sub">WFUSM Academic Cabinet · FY2026</div>
+    </div>
+  </div>
+  <div class="nav-pills">
+    <button class="np active" onclick="showDashboard()">All Pillars</button>
+    <button class="np" onclick="showPillar(0)">Triple &amp; Rebalance</button>
+    <button class="np" onclick="showPillar(1)">Train &amp; Retain</button>
+    <button class="np" onclick="showPillar(2)">Operations</button>
+    <button class="np" onclick="showPillar(3)">Innovation</button>
+    <button class="np" onclick="showDecisions()">📋 Decisions</button>
+  </div>
+  <div class="nav-right">
+    <div style="display:flex;align-items:center;gap:5px">
+      <div class="conn-dot" id="connDot"></div>
+      <span class="conn-lbl" id="connLbl">Loading…</span>
+    </div>
+    <button class="btn-nav" onclick="window.print()">⬇ Print</button>
+  </div>
+</nav>
 
-<!-- BUTTON BAR -->
-<div class="button-bar">
-  <button class="btn" id="editModeBtn" onclick="toggleEditMode()">Edit Mode: OFF</button>
-  <button class="btn" id="lockBtn" onclick="toggleLock()">Lock for Cabinet</button>
-  <button class="btn" onclick="window.print()">Export PDF</button>
-  <button class="btn" onclick="openGuide()">OKR Guide</button>
-  <div class="lock-indicator" id="lockIndicator">🔒 LOCKED &mdash; Cabinet View</div>
+<div class="explainer" id="explainerBanner">
+  <div class="explainer-text">
+    <strong>How to read these scores — the grant analogy:</strong>
+    Think of each pillar like a grant application with ambitious aims.
+    <strong>Hitting 70% of your milestones is excellent progress</strong> — that is why <strong>a score of 6–7 out of 10 is our target zone</strong>, not a sign of falling short.
+    We set bold goals on purpose. Scoring 10 every time would mean the goals were not ambitious enough.
+    Hover over any <strong>ℹ</strong> or column header for plain-language explanations.
+  </div>
+  <button class="explainer-close" onclick="document.getElementById('explainerBanner').style.display='none'">Got it ✕</button>
 </div>
 
-<!-- MAIN -->
+<div id="toastWrap"></div>
+<button class="save-btn" id="saveBtn">💾 Save Changes</button>
+
 <div class="main">
-
-  <!-- ASPIRATIONAL OKRs -->
-  <div class="section-card" id="sec-aspire">
-    <div class="section-header" onclick="toggleSection('aspire')">
-      <h2>Aspirational OKRs</h2>
-      <span class="section-badge">4 Goals</span>
-      <span class="toggle-icon" id="icon-aspire">&#9654;</span>
-    </div>
-    <div class="section-content" id="content-aspire">
-      <div class="okr-note">
-        &#127941; Aspirational targets &mdash; hitting 70% of ambitious milestones = excellent performance
-        (equivalent to a funded grant hitting 70% of stated aims).
-      </div>
-
-      <!-- GOAL 0 -->
-      <div class="goal-row" id="goal-0">
-        <div class="goal-text editable-field" onclick="openFieldModal('goal-text','goal-0','Goal Text')">
-          Triple Research Funding $420M &rarr; &gt;$1.2B &middot; $500M Industry Trials &middot; &gt;$200M PCORI &middot; $350M NIH
-        </div>
-        <div class="goal-meta">
-          <div class="meta-item">
-            <span>Owner:</span>
-            <span class="editable-field goal-owner" onclick="openFieldModal('goal-owner','goal-0','Owner')">Assign</span>
-          </div>
-          <div class="meta-item">
-            <button class="status-btn" onclick="cycleStatus(this)" title="Click to change status">🟢</button>
-          </div>
-          <div class="meta-item conf-wrap">
-            <span>Confidence:</span>
-            <div class="conf-bar-outer"><div class="conf-bar-inner" style="width:70%;background:#2e7d32;"></div></div>
-            <span class="conf-val editable-field" onclick="openConfModal('goal-0')">70%</span>
-          </div>
-          <div class="meta-item">
-            <button class="issue-btn" id="issue-goal-0" onclick="openIssueModal('goal-0')" title="No issues logged">⚠</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- GOAL 1 -->
-      <div class="goal-row" id="goal-1">
-        <div class="goal-text editable-field" onclick="openFieldModal('goal-text','goal-1','Goal Text')">
-          Grow, Retain, Innovate &mdash; &gt;3,000 Learners &middot; &gt;300 GME Programs &middot; Train &amp; Retain 40% of Learners
-        </div>
-        <div class="goal-meta">
-          <div class="meta-item">
-            <span>Owner:</span>
-            <span class="editable-field goal-owner" onclick="openFieldModal('goal-owner','goal-1','Owner')">Assign</span>
-          </div>
-          <div class="meta-item">
-            <button class="status-btn" onclick="cycleStatus(this)" title="Click to change status">🟢</button>
-          </div>
-          <div class="meta-item conf-wrap">
-            <span>Confidence:</span>
-            <div class="conf-bar-outer"><div class="conf-bar-inner" style="width:70%;background:#2e7d32;"></div></div>
-            <span class="conf-val editable-field" onclick="openConfModal('goal-1')">70%</span>
-          </div>
-          <div class="meta-item">
-            <button class="issue-btn" id="issue-goal-1" onclick="openIssueModal('goal-1')" title="No issues logged">⚠</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- GOAL 2 -->
-      <div class="goal-row" id="goal-2">
-        <div class="goal-text editable-field" onclick="openFieldModal('goal-text','goal-2','Goal Text')">
-          Establish a high-performing, data-driven academic operating environment &mdash; governance, financial transparency, scalable infrastructure
-        </div>
-        <div class="goal-meta">
-          <div class="meta-item">
-            <span>Owner:</span>
-            <span class="editable-field goal-owner" onclick="openFieldModal('goal-owner','goal-2','Owner')">Assign</span>
-          </div>
-          <div class="meta-item">
-            <button class="status-btn" onclick="cycleStatus(this)" title="Click to change status">🟢</button>
-          </div>
-          <div class="meta-item conf-wrap">
-            <span>Confidence:</span>
-            <div class="conf-bar-outer"><div class="conf-bar-inner" style="width:70%;background:#2e7d32;"></div></div>
-            <span class="conf-val editable-field" onclick="openConfModal('goal-2')">70%</span>
-          </div>
-          <div class="meta-item">
-            <button class="issue-btn" id="issue-goal-2" onclick="openIssueModal('goal-2')" title="No issues logged">⚠</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- GOAL 3 -->
-      <div class="goal-row" id="goal-3">
-        <div class="goal-text editable-field" onclick="openFieldModal('goal-text','goal-3','Goal Text')">
-          Leverage Districts, Harness Partnerships, Translate &mdash; 10 Major Academic-Industry Partnerships &middot; 50 Licensed Products
-        </div>
-        <div class="goal-meta">
-          <div class="meta-item">
-            <span>Owner:</span>
-            <span class="editable-field goal-owner" onclick="openFieldModal('goal-owner','goal-3','Owner')">Assign</span>
-          </div>
-          <div class="meta-item">
-            <button class="status-btn" onclick="cycleStatus(this)" title="Click to change status">🟢</button>
-          </div>
-          <div class="meta-item conf-wrap">
-            <span>Confidence:</span>
-            <div class="conf-bar-outer"><div class="conf-bar-inner" style="width:70%;background:#2e7d32;"></div></div>
-            <span class="conf-val editable-field" onclick="openConfModal('goal-3')">70%</span>
-          </div>
-          <div class="meta-item">
-            <button class="issue-btn" id="issue-goal-3" onclick="openIssueModal('goal-3')" title="No issues logged">⚠</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- SCORECARD 1: RESEARCH & INNOVATION -->
-  <div class="section-card" id="sec-research">
-    <div class="section-header" onclick="toggleSection('research')">
-      <h2>Research &amp; Innovation Steering Team</h2>
-      <span class="section-badge">Scorecard</span>
-      <span class="toggle-icon" id="icon-research">&#9654;</span>
-    </div>
-    <div class="section-content" id="content-research">
-      <div class="scorecard-label">Key Results &amp; Execution Tracker</div>
-      <div class="filter-bar">
-        <label>
-          <input type="checkbox" onchange="toggleFilter('tbl-research', this.checked)">
-          Show needs-attention only
-        </label>
-      </div>
-      <table id="tbl-research">
-        <thead>
-          <tr>
-            <th>Key Result</th><th>Owner</th><th>Status</th>
-            <th>Confidence</th><th>Due</th><th>Issues</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-status="green" data-conf="75">
-            <td class="cell-editable" onclick="openCellModal(this)">Secure $500M Industry Trial agreements</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:75%;background:#2e7d32;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">75%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">Q4 FY26</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="65">
-            <td class="cell-editable" onclick="openCellModal(this)">Submit &gt;$200M PCORI funding applications</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:65%;background:#f9a825;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">65%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">Q3 FY26</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="80">
-            <td class="cell-editable" onclick="openCellModal(this)">Grow NIH funding base to $350M</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:80%;background:#2e7d32;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">80%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">FY27</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="60">
-            <td class="cell-editable" onclick="openCellModal(this)">Launch CAIR research platform v1.0</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:60%;background:#f9a825;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">60%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">Q2 FY27</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- SCORECARD 2: EDUCATION & WORKFORCE -->
-  <div class="section-card" id="sec-edu">
-    <div class="section-header" onclick="toggleSection('edu')">
-      <h2>Education &amp; Workforce Steering Team</h2>
-      <span class="section-badge">Scorecard</span>
-      <span class="toggle-icon" id="icon-edu">&#9654;</span>
-    </div>
-    <div class="section-content" id="content-edu">
-      <div class="scorecard-label">Key Results &amp; Execution Tracker</div>
-      <div class="filter-bar">
-        <label>
-          <input type="checkbox" onchange="toggleFilter('tbl-edu', this.checked)">
-          Show needs-attention only
-        </label>
-      </div>
-      <table id="tbl-edu">
-        <thead>
-          <tr>
-            <th>Key Result</th><th>Owner</th><th>Status</th>
-            <th>Confidence</th><th>Due</th><th>Issues</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-status="green" data-conf="72">
-            <td class="cell-editable" onclick="openCellModal(this)">Enroll &gt;3,000 learners across programs</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:72%;background:#2e7d32;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">72%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">Q4 FY26</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="68">
-            <td class="cell-editable" onclick="openCellModal(this)">Expand to &gt;300 GME programs</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:68%;background:#f9a825;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">68%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">FY27</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="55">
-            <td class="cell-editable" onclick="openCellModal(this)">Train &amp; Retain 40% of learners in-system</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:55%;background:#f9a825;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">55%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">FY27</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="70">
-            <td class="cell-editable" onclick="openCellModal(this)">Launch Virtual Medical School pilot</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:70%;background:#2e7d32;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">70%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">Q3 FY26</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- SCORECARD 3: ACADEMIC OPERATIONS -->
-  <div class="section-card" id="sec-ops">
-    <div class="section-header" onclick="toggleSection('ops')">
-      <h2>Academic Operations Steering Team</h2>
-      <span class="section-badge">Scorecard</span>
-      <span class="toggle-icon" id="icon-ops">&#9654;</span>
-    </div>
-    <div class="section-content" id="content-ops">
-      <div class="scorecard-label">Key Results &amp; Execution Tracker</div>
-      <div class="filter-bar">
-        <label>
-          <input type="checkbox" onchange="toggleFilter('tbl-ops', this.checked)">
-          Show needs-attention only
-        </label>
-      </div>
-      <table id="tbl-ops">
-        <thead>
-          <tr>
-            <th>Key Result</th><th>Owner</th><th>Status</th>
-            <th>Confidence</th><th>Due</th><th>Issues</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-status="green" data-conf="65">
-            <td class="cell-editable" onclick="openCellModal(this)">Implement governance framework v1.0</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:65%;background:#f9a825;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">65%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">Q2 FY26</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="70">
-            <td class="cell-editable" onclick="openCellModal(this)">Deploy financial transparency dashboard</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:70%;background:#2e7d32;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">70%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">Q3 FY26</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="60">
-            <td class="cell-editable" onclick="openCellModal(this)">Scalable infrastructure roadmap approved</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:60%;background:#f9a825;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">60%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">Q4 FY26</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="75">
-            <td class="cell-editable" onclick="openCellModal(this)">Chief of Staff / PM System deployed (EOS)</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Elsaie, Hossam</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:75%;background:#2e7d32;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">75%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">Q2 FY26</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- SCORECARD 4: PARTNERSHIPS & TRANSLATION -->
-  <div class="section-card" id="sec-partners">
-    <div class="section-header" onclick="toggleSection('partners')">
-      <h2>Partnerships &amp; Translation Steering Team</h2>
-      <span class="section-badge">Scorecard</span>
-      <span class="toggle-icon" id="icon-partners">&#9654;</span>
-    </div>
-    <div class="section-content" id="content-partners">
-      <div class="scorecard-label">Key Results &amp; Execution Tracker</div>
-      <div class="filter-bar">
-        <label>
-          <input type="checkbox" onchange="toggleFilter('tbl-partners', this.checked)">
-          Show needs-attention only
-        </label>
-      </div>
-      <table id="tbl-partners">
-        <thead>
-          <tr>
-            <th>Key Result</th><th>Owner</th><th>Status</th>
-            <th>Confidence</th><th>Due</th><th>Issues</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-status="green" data-conf="70">
-            <td class="cell-editable" onclick="openCellModal(this)">Establish 10 Major Academic-Industry Partnerships</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:70%;background:#2e7d32;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">70%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">FY27</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="55">
-            <td class="cell-editable" onclick="openCellModal(this)">License 50 products through translation pipeline</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:55%;background:#f9a825;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">55%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">FY27</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="60">
-            <td class="cell-editable" onclick="openCellModal(this)">Activate district-level academic engagement model</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:60%;background:#f9a825;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">60%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">Q4 FY26</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-          <tr data-status="green" data-conf="65">
-            <td class="cell-editable" onclick="openCellModal(this)">Launch Cells to Community program cohort 1</td>
-            <td class="cell-editable" onclick="openCellModal(this)">Assign</td>
-            <td><button class="status-btn" onclick="cycleStatus(this)">🟢</button></td>
-            <td><div class="conf-wrap"><div class="conf-bar-outer"><div class="conf-bar-inner" style="width:65%;background:#f9a825;"></div></div><span class="conf-val cell-editable" onclick="openConfCellModal(this)">65%</span></div></td>
-            <td class="cell-editable" onclick="openCellModal(this)">Q3 FY26</td>
-            <td><button class="issue-btn" onclick="openIssueCellModal(this)" title="No issues logged">⚠</button></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-</div><!-- /main -->
-
-<!-- EDIT MODAL -->
-<div class="modal-overlay" id="editModal">
-  <div class="modal-box">
-    <h3 id="editModalTitle">Edit Field</h3>
-    <textarea id="editModalInput"></textarea>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
-      <button class="btn-save" onclick="saveEditModal()">Save</button>
-    </div>
-  </div>
-</div>
-
-<!-- CONFIDENCE MODAL -->
-<div class="modal-overlay" id="confModal">
-  <div class="modal-box">
-    <h3>Update Confidence %</h3>
-    <input type="text" id="confModalInput" placeholder="Enter 0-100">
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeConfModal()">Cancel</button>
-      <button class="btn-save" onclick="saveConfModal()">Save</button>
-    </div>
-  </div>
-</div>
-
-<!-- ISSUE MODAL -->
-<div class="modal-overlay" id="issueModal">
-  <div class="modal-box">
-    <h3>Log Issue / Blocker</h3>
-    <textarea id="issueModalInput" placeholder="Describe the issue or blocker..."></textarea>
-    <div class="modal-actions">
-      <button class="btn-cancel" onclick="closeIssueModal()">Cancel</button>
-      <button class="btn-save" onclick="saveIssueModal()">Save</button>
-    </div>
-  </div>
-</div>
-
-<!-- OKR GUIDE MODAL -->
-<div class="modal-overlay" id="guideModal">
-  <div class="modal-box" style="width:640px;">
-    <h3>OKR Guide &mdash; WFUSM Academic Cabinet</h3>
-    <div class="guide-content">
-      <h4>What are Aspirational OKRs?</h4>
-      <p>Aspirational OKRs set ambitious, stretch targets that drive transformational performance. They are NOT performance reviews.</p>
-      <h4>Scoring Principle</h4>
-      <ul>
-        <li><strong>70% achievement = excellent</strong> (grant-funding analogy: hitting 70% of stated aims = funded, high-performing grant)</li>
-        <li>100% = target was not ambitious enough</li>
-        <li>Below 40% = recalibration needed</li>
-      </ul>
-      <h4>Status Indicators</h4>
-      <ul>
-        <li>🟢 On Track &mdash; progressing as planned</li>
-        <li>🟡 At Risk &mdash; needs attention or course correction</li>
-        <li>🔴 Off Track &mdash; escalation or replanning required</li>
-      </ul>
-      <h4>Confidence %</h4>
-      <p>Team confidence of achieving this Key Result by the due date. Update quarterly or when conditions change.</p>
-      <h4>Lock for Cabinet</h4>
-      <p>Freezes all editing. Use before presenting to Steering Teams or Dean Boulware.</p>
-    </div>
-    <div class="modal-actions" style="margin-top:16px;">
-      <button class="btn-save" onclick="closeGuide()">Close</button>
-    </div>
-  </div>
+  <div id="dashboard-view"></div>
+  <div id="detail-view" style="display:none"></div>
+  <div id="decisions-view" style="display:none"></div>
 </div>
 
 <script>
-/* ── STATE ── */
-const STATE = { editMode: false, locked: false };
-
-/* ── CACHED DOM REFS ── */
-const editModal       = document.getElementById('editModal');
-const editModalInput  = document.getElementById('editModalInput');
-const editModalTitle  = document.getElementById('editModalTitle');
-const confModal       = document.getElementById('confModal');
-const confModalInput  = document.getElementById('confModalInput');
-const issueModal      = document.getElementById('issueModal');
-const issueModalInput = document.getElementById('issueModalInput');
-const guideModal      = document.getElementById('guideModal');
-const lockIndicator   = document.getElementById('lockIndicator');
-const editModeBtn     = document.getElementById('editModeBtn');
-
-/* ── CURRENT EDIT TARGETS ── */
-let currentEditEl  = null;
-let currentConfEl  = null;
-let currentIssueEl = null;
-
-/* ── STATUS EMOJI ── */
-const STATUS_STATES = ['🟢', '🟡', '🔴'];
-const STATUS_KEYS   = {'🟢': 0, '🟡': 1, '🔴': 2};
-
-/* ─────────────────────────────────────────
-   EDIT MODE / LOCK
-───────────────────────────────────────── */
-function toggleEditMode() {
-  if (STATE.locked) return;
-  STATE.editMode = !STATE.editMode;
-  editModeBtn.textContent = 'Edit Mode: ' + (STATE.editMode ? 'ON' : 'OFF');
-  editModeBtn.style.outline = STATE.editMode ? '2px solid #C99700' : 'none';
-}
-
-function toggleLock() {
-  STATE.locked = !STATE.locked;
-  if (STATE.locked) {
-    STATE.editMode = false;
-    editModeBtn.textContent = 'Edit Mode: OFF';
-    editModeBtn.style.outline = 'none';
-    lockIndicator.classList.add('visible');
-  } else {
-    lockIndicator.classList.remove('visible');
+/* ── TOOLTIP SYSTEM ───────────────────────────────────────── */
+const tipEl = document.getElementById('tip');
+document.addEventListener('mouseover', e => {
+  const t = e.target.closest('[data-tip]');
+  tipEl.style.opacity = t ? '1' : '0';
+  if (t) tipEl.innerHTML = t.dataset.tip;
+});
+document.addEventListener('mousemove', e => {
+  if (tipEl.style.opacity === '1') {
+    tipEl.style.left = Math.min(e.clientX + 14, window.innerWidth - 268) + 'px';
+    tipEl.style.top = Math.max(e.clientY - 58, 6) + 'px';
   }
-  document.querySelectorAll('.status-btn, .issue-btn').forEach(function(btn) {
-    btn.disabled = STATE.locked;
-  });
-}
-
-/* ─────────────────────────────────────────
-   SECTION COLLAPSE
-───────────────────────────────────────── */
-function toggleSection(id) {
-  const content = document.getElementById('content-' + id);
-  const icon    = document.getElementById('icon-' + id);
-  const isOpen  = content.classList.contains('open');
-  content.classList.toggle('open', !isOpen);
-  icon.innerHTML = isOpen ? '&#9654;' : '&#9660;';
-}
-
-/* ─────────────────────────────────────────
-   STATUS CYCLE
-───────────────────────────────────────── */
-function cycleStatus(btn) {
-  if (STATE.locked) return;
-  const cur = STATUS_KEYS[btn.textContent] !== undefined ? STATUS_KEYS[btn.textContent] : 0;
-  btn.textContent = STATUS_STATES[(cur + 1) % 3];
-  const row = btn.closest('tr') || btn.closest('.goal-row');
-  if (row) {
-    const labels = ['green', 'yellow', 'red'];
-    row.setAttribute('data-status', labels[(cur + 1) % 3]);
-  }
-  updateNeedsAttention(btn);
-  saveData();
-}
-
-function updateNeedsAttention(el) {
-  const row = el.closest('tr');
-  if (!row) return;
-  const statusEl = row.querySelector('.status-btn');
-  const confEl   = row.querySelector('.conf-val');
-  const statusOff = statusEl && statusEl.textContent === '🔴';
-  const confLow   = confEl && parseInt(confEl.textContent) < 25;
-  row.classList.toggle('needs-attention', statusOff || confLow);
-}
-
-/* ─────────────────────────────────────────
-   EDIT MODAL — GOAL FIELDS
-───────────────────────────────────────── */
-function openFieldModal(fieldType, goalId, label) {
-  if (!STATE.editMode || STATE.locked) return;
-  const goalRow = document.getElementById(goalId);
-  if (!goalRow) return;
-  if (fieldType === 'goal-text') {
-    currentEditEl = goalRow.querySelector('.goal-text');
-  } else {
-    currentEditEl = goalRow.querySelector('.goal-owner');
-  }
-  if (!currentEditEl) return;
-  editModalTitle.textContent = 'Edit: ' + label;
-  editModalInput.value = currentEditEl.innerText.trim();
-  editModal.classList.add('open');
-  editModalInput.focus();
-}
-
-/* ─────────────────────────────────────────
-   EDIT MODAL — TABLE CELLS
-───────────────────────────────────────── */
-function openCellModal(td) {
-  if (!STATE.editMode || STATE.locked) return;
-  currentEditEl = td;
-  editModalTitle.textContent = 'Edit Cell';
-  editModalInput.value = td.innerText.trim();
-  editModal.classList.add('open');
-  editModalInput.focus();
-}
-
-function saveEditModal() {
-  if (!currentEditEl) return;
-  currentEditEl.innerText = editModalInput.value.trim();
-  editModal.classList.remove('open');
-  currentEditEl = null;
-  saveData();
-}
-
-function closeEditModal() {
-  editModal.classList.remove('open');
-  currentEditEl = null;
-}
-
-/* ─────────────────────────────────────────
-   CONFIDENCE MODAL — GOAL ROWS
-───────────────────────────────────────── */
-function openConfModal(goalId) {
-  if (!STATE.editMode || STATE.locked) return;
-  const goalRow = document.getElementById(goalId);
-  if (!goalRow) return;
-  currentConfEl = goalRow.querySelector('.conf-val');
-  confModalInput.value = parseInt(currentConfEl.innerText) || 70;
-  confModal.classList.add('open');
-  confModalInput.focus();
-  confModalInput.select();
-}
-
-/* CONFIDENCE MODAL — TABLE CELLS */
-function openConfCellModal(span) {
-  if (!STATE.editMode || STATE.locked) return;
-  currentConfEl = span;
-  confModalInput.value = parseInt(span.innerText) || 70;
-  confModal.classList.add('open');
-  confModalInput.focus();
-  confModalInput.select();
-}
-
-function saveConfModal() {
-  if (!currentConfEl) return;
-  let val = parseInt(confModalInput.value);
-  if (isNaN(val)) val = 0;
-  val = Math.min(100, Math.max(0, val));
-  currentConfEl.innerText = val + '%';
-  const bar   = currentConfEl.closest('.conf-wrap').querySelector('.conf-bar-inner');
-  const color = val >= 70 ? '#2e7d32' : val >= 40 ? '#f9a825' : '#c62828';
-  if (bar) { bar.style.width = val + '%'; bar.style.background = color; }
-  const row = currentConfEl.closest('tr');
-  if (row) {
-    row.setAttribute('data-conf', val);
-    updateNeedsAttention(currentConfEl);
-  }
-  confModal.classList.remove('open');
-  currentConfEl = null;
-  saveData();
-}
-
-function closeConfModal() {
-  confModal.classList.remove('open');
-  currentConfEl = null;
-}
-
-/* ─────────────────────────────────────────
-   ISSUE MODAL — GOAL ROWS
-───────────────────────────────────────── */
-function openIssueModal(goalId) {
-  if (STATE.locked) return;
-  currentIssueEl = document.getElementById('issue-' + goalId);
-  if (!currentIssueEl) return;
-  const existing = currentIssueEl.getAttribute('title');
-  issueModalInput.value = (existing === 'No issues logged') ? '' : (existing || '');
-  issueModal.classList.add('open');
-  issueModalInput.focus();
-}
-
-/* ISSUE MODAL — TABLE CELLS */
-function openIssueCellModal(btn) {
-  if (STATE.locked) return;
-  currentIssueEl = btn;
-  const existing = btn.getAttribute('title');
-  issueModalInput.value = (existing === 'No issues logged') ? '' : (existing || '');
-  issueModal.classList.add('open');
-  issueModalInput.focus();
-}
-
-function saveIssueModal() {
-  if (!currentIssueEl) return;
-  const text = issueModalInput.value.trim();
-  if (text) {
-    currentIssueEl.setAttribute('title', text);
-    currentIssueEl.classList.add('flagged');
-  } else {
-    currentIssueEl.setAttribute('title', 'No issues logged');
-    currentIssueEl.classList.remove('flagged');
-  }
-  const row = currentIssueEl.closest('tr');
-  if (row) updateNeedsAttention(currentIssueEl);
-  issueModal.classList.remove('open');
-  currentIssueEl = null;
-  saveData();
-}
-
-function closeIssueModal() {
-  issueModal.classList.remove('open');
-  currentIssueEl = null;
-}
-
-/* ─────────────────────────────────────────
-   OKR GUIDE
-───────────────────────────────────────── */
-function openGuide()  { guideModal.classList.add('open'); }
-function closeGuide() { guideModal.classList.remove('open'); }
-
-/* ─────────────────────────────────────────
-   CLOSE MODALS ON OVERLAY CLICK
-───────────────────────────────────────── */
-[editModal, confModal, issueModal, guideModal].forEach(function(m) {
-  m.addEventListener('click', function(e) {
-    if (e.target === m) { m.classList.remove('open'); }
-  });
 });
 
-/* ─────────────────────────────────────────
-   NEEDS-ATTENTION FILTER
-───────────────────────────────────────── */
-function toggleFilter(tableId, showOnly) {
-  const rows = document.querySelectorAll('#' + tableId + ' tbody tr');
-  rows.forEach(function(row) {
-    const statusEl = row.querySelector('.status-btn');
-    const confEl   = row.querySelector('.conf-val');
-    const statusOff = statusEl && statusEl.textContent === '🔴';
-    const confLow   = confEl && parseInt(confEl.textContent) < 25;
-    const attn = statusOff || confLow;
-    row.style.display = showOnly ? (attn ? '' : 'none') : '';
-  });
-}
+/* ── STATE & DATA ─────────────────────────────────────────── */
+let PILLARS = [], DECISIONS = [], currentPillarId = null, activeFilter = 'all';
 
-/* ─────────────────────────────────────────
-   PERSISTENCE — DATA ONLY, NEVER innerHTML
-───────────────────────────────────────── */
-function saveData() {
-  const data = { goals: [], scorecards: {} };
-
-  document.querySelectorAll('.goal-row').forEach(function(row) {
-    data.goals.push({
-      text:         (row.querySelector('.goal-text')  || {}).innerText || '',
-      owner:        (row.querySelector('.goal-owner') || {}).innerText || '',
-      status:       (row.querySelector('.status-btn') || {}).textContent || '🟢',
-      confidence:   (row.querySelector('.conf-val')   || {}).innerText || '70%',
-      issue:        (row.querySelector('.issue-btn')  || document.createElement('span')).getAttribute('title') || '',
-      issueFlagged: row.querySelector('.issue-btn') ? row.querySelector('.issue-btn').classList.contains('flagged') : false
-    });
-  });
-
-  ['tbl-research','tbl-edu','tbl-ops','tbl-partners'].forEach(function(tblId) {
-    const tbl = document.getElementById(tblId);
-    if (!tbl) return;
-    data.scorecards[tblId] = [];
-    tbl.querySelectorAll('tbody tr').forEach(function(row) {
-      const cells = row.querySelectorAll('td');
-      data.scorecards[tblId].push({
-        kr:           cells[0] ? cells[0].innerText.trim() : '',
-        owner:        cells[1] ? cells[1].innerText.trim() : '',
-        status:       (row.querySelector('.status-btn') || {}).textContent || '🟢',
-        confidence:   (row.querySelector('.conf-val')   || {}).innerText   || '70%',
-        due:          cells[4] ? cells[4].innerText.trim() : '',
-        issue:        (row.querySelector('.issue-btn')  || document.createElement('span')).getAttribute('title') || '',
-        issueFlagged: row.querySelector('.issue-btn') ? row.querySelector('.issue-btn').classList.contains('flagged') : false
-      });
-    });
-  });
-
-  try { localStorage.setItem('wfusm_okr_v2', JSON.stringify(data)); }
-  catch(e) { console.warn('localStorage unavailable:', e); }
-}
-
-function loadData() {
-  let stored;
-  try { stored = localStorage.getItem('wfusm_okr_v2'); } catch(e) { return; }
-  if (!stored) return;
-  let data;
-  try { data = JSON.parse(stored); } catch(e) { return; }
-
-  if (data.goals) {
-    const rows = document.querySelectorAll('.goal-row');
-    data.goals.forEach(function(d, i) {
-      if (!rows[i]) return;
-      const row      = rows[i];
-      const textEl   = row.querySelector('.goal-text');
-      const ownerEl  = row.querySelector('.goal-owner');
-      const statusEl = row.querySelector('.status-btn');
-      const confEl   = row.querySelector('.conf-val');
-      const barEl    = row.querySelector('.conf-bar-inner');
-      const issueEl  = row.querySelector('.issue-btn');
-      if (textEl   && d.text)       textEl.innerText      = d.text;
-      if (ownerEl  && d.owner)      ownerEl.innerText     = d.owner;
-      if (statusEl && d.status)     statusEl.textContent  = d.status;
-      if (confEl   && d.confidence) {
-        confEl.innerText = d.confidence;
-        const v = parseInt(d.confidence) || 70;
-        const c = v >= 70 ? '#2e7d32' : v >= 40 ? '#f9a825' : '#c62828';
-        if (barEl) { barEl.style.width = v + '%'; barEl.style.background = c; }
-      }
-      if (issueEl && d.issue)  issueEl.setAttribute('title', d.issue);
-      if (issueEl && d.issueFlagged) issueEl.classList.add('flagged');
-    });
+const DATA = [
+  {
+    id: 0, icon: '🔬', iconClass: 'p1', num: 'Pillar 1',
+    name: 'Triple &amp; Rebalance Research',
+    rewire: 'Grow research funding from $420M → $1.2B+ · $500M industry trials · $200M+ PCORI · $350M NIH',
+    objective: 'Build the operational systems that make large-scale, multi-site commercial research growth measurable and repeatable across the enterprise.',
+    sponsor: 'Dean Boulware', lead: 'Adam Samson', pm: 'Kelsey Shore', lastUpdated: '2026-06-02',
+    keyRisk: 'Delays in program onboarding, contracting bottlenecks, or slow infrastructure rollout could limit our ability to scale research across the system.',
+    decision: 'Cabinet should formally communicate that all research programs are expected to align with NCCT operating standards, shared services, and performance reporting.',
+    measures: [
+      { n:'M-1', text:'Reduce average contract turnaround time to 83 days or less', target:'≤83 days', current:'104 days (FY25)', score:0.7, type:'must', owner:'Adam Samson', risk:'Not all sites have adopted the new workflow yet' },
+      { n:'M-2', text:'Launch a tracked industry partnership pipeline in Salesforce', target:'Live by Q3 FY26', current:'Tracking system set up', score:0.6, type:'must', owner:'Adam Samson', risk:'Business development team activation pace' },
+      { n:'M-3', text:'Establish a financial revenue baseline across all sites', target:'Baseline by Q3 FY26', current:'Framework implemented', score:0.5, type:'must', owner:'Adam Samson', risk:'Some regions still maturing their reporting' },
+      { n:'M-4', text:'Onboard 100% of target programs to shared services', target:'100% by Q4 FY26', current:'Onboarding underway', score:0.6, type:'must', owner:'Adam Samson', risk:'Some programs are resisting standardization' },
+      { n:'M-5', text:'Capture baseline NIH and PCORI funding levels', target:'Baseline by Q4 FY26', current:'Not yet started', score:0.4, type:'must', owner:'⚠ Not yet assigned', risk:'No project manager assigned — Cabinet escalation needed' }
+    ],
+    actions: [
+      { text:'Set up Salesforce industry pipeline tracking', m:'M-2', owner:'BD Lead', status:'in-progress', pm:'Kelsey Shore — maintaining version and update log' },
+      { text:'Roll out harmonized contract workflow across sites', m:'M-1', owner:'Adam Samson', status:'in-progress', pm:'Kelsey Shore — coordinating site-by-site' },
+      { text:'Deploy standardized financial reporting framework', m:'M-3', owner:'Finance Lead', status:'in-progress', pm:'Kelsey Shore — filing cycle documents' },
+      { text:'Execute shared services onboarding schedule', m:'M-4', owner:'Adam Samson', status:'in-progress', pm:'Kelsey Shore — tracking by site' },
+      { text:'Form NIH/PCORI working group and assign PM', m:'M-5', owner:'TBD', status:'needs-attn', pm:'⚠ No PM assigned — Cabinet escalation needed' }
+    ],
+    targets: [
+      { label:'Industry Trial Revenue', current:'Baseline Year', target:'$500M', pct:null },
+      { label:'PCORI Funding', current:'Baseline Year', target:'$200M+', pct:null },
+      { label:'NIH Funding', current:'Baseline Year', target:'$350M', pct:null }
+    ]
+  },
+  {
+    id: 1, icon: '🎓', iconClass: 'p2', num: 'Pillar 2',
+    name: 'Train &amp; Retain Talent',
+    rewire: 'Grow to 3,000+ learners · 300+ GME programs · Retain 40% of graduates within the Advocate Health system',
+    objective: 'Build the measurement systems and governance structure needed to track and improve learner retention across the entire enterprise.',
+    sponsor: 'Dean Boulware', lead: 'Terri Yates', pm: 'Chris Blakley', lastUpdated: '2026-06-02',
+    keyRisk: 'Without an agreed definition of "retention" and working measurement tools, we cannot know whether our talent strategies are working.',
+    decision: 'Cabinet must confirm: (1) the definition of "retention" enterprise-wide, and (2) which learner groups are in scope — SOM + GME only, or also Colleges of Health Sciences?',
+    measures: [
+      { n:'M-1', text:'Launch a GME retention dashboard in CAPTURE showing real-time program data', target:'Beta live by end of 2027', current:'CAPTURE partnership active — integration being scoped', score:0.5, type:'stretch', owner:'Tom Hansen', risk:'Data integration with MedHub/New Innovation not yet confirmed' },
+      { n:'M-2', text:'Agree on and document a single enterprise-wide definition of learner retention', target:'Cabinet-approved by Q3', current:'Not yet defined', score:0.4, type:'must', owner:'Terri Yates', risk:'Cabinet has not yet confirmed this definition' },
+      { n:'M-3', text:'Establish a baseline showing how many WFUSM graduates join Advocate GME programs', target:'Program-level baseline by Q4', current:'Hospital-level matching exists in CAPTURE', score:0.5, type:'must', owner:'Alain Bertoni', risk:'NPI number availability for matching not confirmed with IT' },
+      { n:'M-4', text:'Complete a physician workforce needs assessment by specialty and geography', target:'Assessment complete by Q4', current:'All-sites data available', score:0.5, type:'must', owner:'Tom Hansen', risk:'Scope of assessment not yet confirmed by leadership' },
+      { n:'M-5', text:'Charter a governance team to own the Train &amp; Retain strategy', target:'Team chartered + first meeting by Q3', current:'Early discussions only', score:0.4, type:'must', owner:'Tom Hansen + Terri Yates', risk:'Team composition not yet finalized' }
+    ],
+    actions: [
+      { text:'Build GME retention dashboard in CAPTURE', m:'M-1', owner:'Tom Hansen', status:'in-progress', pm:'Chris Blakley — coordinating with CAPTURE team' },
+      { text:'Facilitate Cabinet session to define retention', m:'M-2', owner:'Terri Yates', status:'needs-attn', pm:'Chris Blakley — scheduling alignment session' },
+      { text:'Confirm NPI availability with IT for graduate matching', m:'M-3', owner:'Alain Bertoni', status:'in-progress', pm:'Chris Blakley — tracking IT confirmation' },
+      { text:'Scope and launch workforce needs assessment', m:'M-4', owner:'Tom Hansen', status:'in-progress', pm:'Chris Blakley — documenting scope' },
+      { text:'Draft and ratify governance team charter', m:'M-5', owner:'Tom + Terri Yates', status:'needs-attn', pm:'Chris Blakley — preparing charter template' }
+    ],
+    targets: [
+      { label:'Total Learners', current:'TBC', target:'3,000+', pct:null },
+      { label:'GME Programs', current:'269', target:'300+', pct:'89.7%' },
+      { label:'Graduate Retention Rate', current:'Baseline Year', target:'40% within system', pct:null },
+      { label:'AI Adoption in Programs', current:'TBC', target:'TBC', pct:null }
+    ]
+  },
+  {
+    id: 2, icon: '⚙️', iconClass: 'p3', num: 'Pillar 3',
+    name: 'Unified Operations Framework',
+    rewire: 'Build a data-driven academic operating environment with clear governance, financial transparency, and scalable infrastructure',
+    objective: 'Activate governance structures, financial visibility, and operating models that remove friction and enable all four REWIRE 2030 pillars to execute.',
+    sponsor: 'Dean Boulware', lead: "Chris O'Byrne", pm: 'Claire Hess', lastUpdated: '2026-06-02',
+    keyRisk: 'Unresolved governance, budget process, and operating model decisions continue to create execution friction across all four pillars.',
+    decision: 'Cabinet must confirm: decision-rights model, intake workflow timing, N3–N8 operating model approach, and sequencing for 2027 budget, CAPTURE deployment, and faculty planning.',
+    measures: [
+      { n:'M-1', text:'Finalize and communicate a decision-rights model to all Vice Deans', target:'Complete by Q2', current:'TBC', score:0.5, type:'must', owner:'TBD', risk:'Getting alignment across Vice Deans may be challenging' },
+      { n:'M-2', text:'Launch a standardized intake process that measurably reduces decision cycle time', target:'Intake live by Q2', current:'TBC', score:0.5, type:'must', owner:'TBD', risk:'Teams may default to existing informal channels' },
+      { n:'M-3', text:'Map 100% of academic cost centers to Vice Deans with monthly reporting', target:'100% mapped by Q2', current:'TBC', score:0.6, type:'must', owner:'TBD', risk:'Financial data completeness across all units' },
+      { n:'M-4', text:'Launch the FY2027 budget process with a forward-looking planning framework', target:'Process launched Q2', current:'TBC', score:0.6, type:'must', owner:'TBD', risk:'Timeline compression given other Q2 priorities' },
+      { n:'M-5', text:'Approve the N3–N8 operating model and launch matrixed leader reporting', target:'Approved by Q2', current:'TBC', score:0.5, type:'stretch', owner:'TBD', risk:'Organizational complexity and cross-unit coordination' }
+    ],
+    actions: [
+      { text:'Develop and socialize decision-rights model', m:'M-1', owner:'TBD', status:'in-progress', pm:'Claire Hess — tracking stakeholder alignment' },
+      { text:'Design and launch standardized intake workflow', m:'M-2', owner:'TBD', status:'in-progress', pm:'Claire Hess — maintaining documentation' },
+      { text:'Complete cost center mapping exercise', m:'M-3', owner:'TBD', status:'in-progress', pm:'Claire Hess — filing mapping outputs' },
+      { text:'Initiate FY2027 budget planning process', m:'M-4', owner:'TBD', status:'in-progress', pm:'Claire Hess — coordinating with finance' },
+      { text:'Assess N3–N8 operating model options', m:'M-5', owner:'TBD', status:'in-progress', pm:'Claire Hess — documenting options analysis' }
+    ],
+    targets: [
+      { label:'Programs with Analytics Reporting', current:'TBC', target:'100%', pct:null },
+      { label:'Decision Cycle Time', current:'Baseline Year', target:'Reduced (TBD)', pct:null },
+      { label:'Cost Centers Mapped', current:'TBC', target:'100%', pct:null }
+    ]
+  },
+  {
+    id: 3, icon: '💡', iconClass: 'p4', num: 'Pillar 4',
+    name: 'Innovation &amp; Commercialization',
+    rewire: 'Establish 10 major academic-industry partnerships · Commercialize 50 licensed products or care innovations',
+    objective: 'Stand up the First-in-Human (FIH) Accelerator — a structured pathway to move discoveries from the lab to early clinical testing with governance and investment backing.',
+    sponsor: 'Dean Boulware', lead: 'Terry Hales', pm: 'Maria Jessup', lastUpdated: '2026-06-02',
+    keyRisk: 'Without an IP inventory, confirmed governance, and executive sponsorship, the FIH Accelerator risks remaining a concept rather than an operational program.',
+    decision: 'Cabinet must confirm governance structure, investment priorities, and sponsorship model for the FIH Accelerator — and validate baselines once the IP inventory is complete.',
+    measures: [
+      { n:'M-1', text:'Complete an inventory of First-in-Human ready assets ranked by stage and priority', target:'Ranked list with plans by Q2', current:'Not yet started', score:0.5, type:'must', owner:'Cristina Furdui', risk:'No unified IP inventory system exists yet' },
+      { n:'M-2', text:'Form and convene a cross-organizational FIH working group', target:'Charter + first meeting by Q2', current:'TBC', score:0.5, type:'must', owner:'TBD', risk:'Cross-institutional coordination complexity' },
+      { n:'M-3', text:'Design and launch an entrepreneurship boot camp for faculty', target:'Boot camp launched by Q3', current:'TBC', score:0.4, type:'stretch', owner:'Erich Huang', risk:'Faculty scheduling and engagement pace' },
+      { n:'M-4', text:'Establish a baseline IP inventory including licensing agreements', target:'Baseline captured by Q4', current:'TBC', score:0.4, type:'must', owner:'David Zhao', risk:'No IP tracking system exists — must be built first' },
+      { n:'M-5', text:'Get Cabinet approval of FIH Accelerator governance, sponsors, and investment priorities', target:'Governance approved by Q2', current:'TBC', score:0.5, type:'must', owner:'Terry Hales', risk:'Getting sponsor alignment across organizations' }
+    ],
+    actions: [
+      { text:'Conduct FIH asset inventory', m:'M-1', owner:'Cristina Furdui', status:'in-progress', pm:'Maria Jessup — tracking inventory completion' },
+      { text:'Draft and ratify working group charter', m:'M-2', owner:'Terry Hales', status:'in-progress', pm:'Maria Jessup — preparing charter template' },
+      { text:'Develop boot camp curriculum with partner', m:'M-3', owner:'Erich Huang', status:'in-progress', pm:'Maria Jessup — coordinating with partners' },
+      { text:'Identify and deploy IP tracking system', m:'M-4', owner:'David Zhao', status:'needs-attn', pm:'Maria Jessup — evaluating system options' },
+      { text:'Design governance model and schedule Cabinet approval', m:'M-5', owner:'Terry Hales', status:'in-progress', pm:'Maria Jessup — scheduling sponsor alignment' }
+    ],
+    targets: [
+      { label:'Academic-Industry Partnerships', current:'Baseline Year', target:'10 major', pct:null },
+      { label:'Licensed Products / Care Innovations', current:'Baseline Year', target:'50', pct:null },
+      { label:'FIH-Ready Assets Identified', current:'Pending inventory', target:'TBD', pct:null }
+    ]
   }
+];
 
-  if (data.scorecards) {
-    ['tbl-research','tbl-edu','tbl-ops','tbl-partners'].forEach(function(tblId) {
-      const tbl = document.getElementById(tblId);
-      if (!tbl || !data.scorecards[tblId]) return;
-      const rows = tbl.querySelectorAll('tbody tr');
-      data.scorecards[tblId].forEach(function(d, i) {
-        if (!rows[i]) return;
-        const row      = rows[i];
-        const cells    = row.querySelectorAll('td');
-        const statusEl = row.querySelector('.status-btn');
-        const confEl   = row.querySelector('.conf-val');
-        const barEl    = row.querySelector('.conf-bar-inner');
-        const issueEl  = row.querySelector('.issue-btn');
-        if (cells[0] && d.kr)    cells[0].innerText = d.kr;
-        if (cells[1] && d.owner) cells[1].innerText = d.owner;
-        if (statusEl && d.status) statusEl.textContent = d.status;
-        if (confEl && d.confidence) {
-          confEl.innerText = d.confidence;
-          const v = parseInt(d.confidence) || 70;
-          const c = v >= 70 ? '#2e7d32' : v >= 40 ? '#f9a825' : '#c62828';
-          if (barEl) { barEl.style.width = v + '%'; barEl.style.background = c; }
-        }
-        if (cells[4] && d.due)  cells[4].innerText = d.due;
-        if (issueEl && d.issue) issueEl.setAttribute('title', d.issue);
-        if (issueEl && d.issueFlagged) issueEl.classList.add('flagged');
-        updateNeedsAttention(row.querySelector('.status-btn') || row.querySelector('td'));
-      });
-    });
-  }
+/* ── HELPERS ──────────────────────────────────────────────── */
+function sColor(s){ return s>=0.7?'#008C95':s>=0.4?'#9E7E38':'#53565A'; }
+function sLabel(s){ return s>=0.7?'On Track ✓':s>=0.4?'In Progress':'Needs Attention'; }
+function sBadge(s){ return s>=0.7?'badge-on-track':s>=0.4?'badge-in-progress':'badge-needs-attn'; }
+function sCardClass(s){ return s>=0.7?'s-on-track':s>=0.4?'s-in-progress':'s-needs-attn'; }
+function avg(arr){ return arr.reduce((a,k)=>a+k.score,0)/arr.length; }
+function isSweet(s){ return s>=0.6&&s<=0.7; }
+function disp(s){ return (s*10).toFixed(1); }
+function statusDot(st){ return st==='on-track'?'#008C95':st==='needs-attn'?'#53565A':'#9E7E38'; }
+function statusLbl(st){ return st==='on-track'?'On Track':st==='needs-attn'?'Needs Attention':'In Progress'; }
+function esc(s){ return s.replace(/"/g,'&quot;'); }
+function toast(msg,color){
+  const t=document.createElement('div');
+  t.className='toast';t.textContent=msg;t.style.background=color||'#9E7E38';
+  document.getElementById('toastWrap').appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .4s';},2500);
+  setTimeout(()=>t.remove(),3000);
+}
+function navActive(i){ document.querySelectorAll('.np').forEach((p,j)=>p.classList.toggle('active',j===i)); }
+
+/* ── INIT ─────────────────────────────────────────────────── */
+function init(){
+  PILLARS=JSON.parse(JSON.stringify(DATA));
+  try{DECISIONS=JSON.parse(localStorage.getItem('r30_dec')||'[]');}catch{DECISIONS=[];}
+  document.getElementById('connDot').className='conn-dot off';
+  document.getElementById('connLbl').textContent='Ready';
+  document.getElementById('loading').style.display='none';
+  renderDashboard();
 }
 
-document.addEventListener('DOMContentLoaded', loadData);
+/* ── CABINET INPUT NEEDED ─────────────────────────────────── */
+function buildInputNeeded(){
+  const items=[];
+  PILLARS.forEach(p=>{
+    if(p.decision)
+      items.push(`<div class="in-item"><strong>${p.num} — ${p.name.replace(/&amp;/g,'&')}:</strong> ${p.decision}</div>`);
+    p.actions.forEach(a=>{
+      if(a.status==='needs-attn')
+        items.push(`<div class="in-item"><strong>${p.num} — ${a.text}:</strong> ${a.pm}</div>`);
+    });
+  });
+  if(!items.length)return'';
+  return`<div class="input-needed"><div class="in-title">⚡ Cabinet Input Needed</div>${items.join('')}</div>`;
+}
+
+/* ── BUILD CARD ───────────────────────────────────────────── */
+function buildCard(p){
+  const a=avg(p.measures);
+  const cc=sCardClass(a);
+  /* Needs Attention filter fires only when avg < 0.25 (2.5/10) */
+  const df=`${p.decision?'input ':''}${a<0.25?'attn':''}`;
+  const zone=isSweet(a)
+    ?'🎯 Target zone — like hitting 70% of your grant aims: excellent'
+    :a>=0.7?'Strong progress — confirm goals remain ambitious'
+    :a>=0.4?'Making progress — review any blockers'
+    :'Early stage — may need attention';
+  return`<div class="pcard ${cc}" id="card-${p.id}" onclick="showPillar(${p.id})" data-filter="${df}">
+    <div class="card-top">
+      <div class="card-id">
+        <div class="c-icon ${p.iconClass}">${p.icon}</div>
+        <div>
+          <div class="card-num">${p.num}</div>
+          <div class="card-name">${p.name}</div>
+        </div>
+      </div>
+      <div class="card-badges">
+        <span class="badge ${sBadge(a)}">${sLabel(a)}</span>
+        ${p.decision?'<span class="badge badge-input">⚡ Input Needed</span>':''}
+      </div>
+    </div>
+    <div class="card-goal">"${p.objective}"</div>
+    <div class="card-score">
+      <div>
+        <span class="score-num-big" style="color:${sColor(a)}">${disp(a)}</span>
+        <span class="score-denom">/10</span>
+      </div>
+      <div class="score-right">
+        <div class="score-label-lg" style="color:${sColor(a)}">${sLabel(a)}${isSweet(a)?' 🎯':''}</div>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:${a*100}%;background:${sColor(a)}"></div></div>
+        <div class="score-zone">${zone}</div>
+      </div>
+    </div>
+    <div class="card-cta">Tap to see all measures →</div>
+    <div class="card-meta">
+      <div><div class="cm-lbl">Lead</div><div class="cm-val">${p.lead}</div></div>
+      <div><div class="cm-lbl">Project Mgr</div><div class="cm-val">${p.pm}</div></div>
+      <div><div class="cm-lbl">Updated</div><div class="cm-val">${p.lastUpdated}</div></div>
+    </div>
+  </div>`;
+}
+
+/* ── RENDER DASHBOARD — Cabinet Input Needed FIRST ────────── */
+function renderDashboard(){
+  document.getElementById('dashboard-view').innerHTML=
+    buildInputNeeded()+
+    `<div class="pg-hdr">
+      <h1>Steering Team Scorecards</h1>
+      <div class="pg-hdr-sub">REWIRE 2030 · WFUSM Academic Cabinet · FY2026</div>
+      <div class="pg-tags">
+        <span class="ptag">4 Strategic Pillars</span>
+        <span class="ptag">Score: 0–10 &nbsp;·&nbsp; Target Zone: 6–7</span>
+        <span class="ptag">Hitting 70% of ambitious aims = excellent</span>
+      </div>
+    </div>
+    <div class="score-legend">
+      <span class="sl-heading">Score Key
+        <span class="ii" data-tip="<strong>The grant analogy:</strong><br>Think of each pillar like a grant with ambitious aims. Hitting 70% of your milestones (a 7/10) is excellent progress — that is our target zone. We set bold goals intentionally. A 10 every time would mean the goals were not ambitious enough.">ℹ</span>
+      </span>
+      <span class="sl-item sl-on-track"><span class="sl-dot" style="background:#008C95"></span>7–10: On Track</span>
+      <span class="sl-item sl-target">🎯 6–7: Target Zone</span>
+      <span class="sl-item sl-progress"><span class="sl-dot" style="background:#9E7E38"></span>4–6: In Progress</span>
+      <span class="sl-item sl-attn"><span class="sl-dot" style="background:#53565A"></span>0–3: Needs Attention</span>
+    </div>
+    <div class="filter-row">
+      <span class="filter-lbl">Show:</span>
+      <button class="ftab active" onclick="applyFilter('all',this)">All Pillars</button>
+      <button class="ftab" onclick="applyFilter('input',this)">⚡ Input Needed</button>
+      <button class="ftab" onclick="applyFilter('attn',this)">Needs Attention</button>
+    </div>
+    <div class="grid">${PILLARS.map(buildCard).join('')}</div>`;
+}
+
+function applyFilter(val,btn){
+  activeFilter=val;
+  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pcard').forEach(c=>{
+    c.classList.toggle('hidden',val!=='all'&&!(c.dataset.filter||'').includes(val));
+  });
+}
+
+function showDashboard(){
+  document.getElementById('dashboard-view').style.display='';
+  document.getElementById('detail-view').style.display='none';
+  document.getElementById('decisions-view').style.display='none';
+  document.getElementById('saveBtn').style.display='none';
+  navActive(0);
+}
+
+/* ── DECISIONS ────────────────────────────────────────────── */
+function renderPillarDecs(pid){
+  const list=DECISIONS.filter(d=>d.pillarId===pid);
+  if(!list.length)return'<div class="dec-empty">No decisions recorded yet for this pillar.</div>';
+  return list.map(d=>`<div class="dec-item">
+    <div class="dec-body">
+      <span class="dec-date">${d.dateDisplay||d.timestamp?.slice(0,10)||'—'}</span>
+      <div class="dec-text">${d.decision}</div>
+      <div class="dec-meta">Recorded by: <strong>${d.madeBy||'Cabinet'}</strong>${d.linkedM&&d.linkedM!=='N/A'?`<span class="dec-kr-tag">${d.linkedM}</span>`:''}</div>
+    </div>
+    <button class="btn-del" onclick="deleteDec('${d.id}',${pid})">🗑</button>
+  </div>`).join('');
+}
+
+function logDec(pid){
+  const txt=(document.getElementById('decText-'+pid)||{}).value||'';
+  if(!txt.trim()){toast('Please enter decision text','#53565A');return;}
+  const madeBy=document.getElementById('decBy-'+pid)?.value||'Cabinet';
+  const linkedM=document.getElementById('decM-'+pid)?.value||'N/A';
+  const p=PILLARS.find(x=>x.id===pid);
+  const d={id:Date.now().toString(),pillarId:pid,pillarName:p?.name||'',
+    decision:txt.trim(),madeBy,linkedM,timestamp:new Date().toISOString(),
+    dateDisplay:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})};
+  DECISIONS.unshift(d);
+  try{localStorage.setItem('r30_dec',JSON.stringify(DECISIONS));}catch{}
+  document.getElementById('decText-'+pid).value='';
+  document.getElementById('decList-'+pid).innerHTML=renderPillarDecs(pid);
+  toast('Decision recorded ✓','#008C95');
+}
+
+function deleteDec(did,pid){
+  if(!confirm('Remove this decision from the log?'))return;
+  DECISIONS=DECISIONS.filter(d=>d.id!==did);
+  try{localStorage.setItem('r30_dec',JSON.stringify(DECISIONS));}catch{}
+  const dl=document.getElementById('decList-'+pid);
+  if(dl)dl.innerHTML=renderPillarDecs(pid);else showDecisions();
+  toast('Removed','#9E7E38');
+}
+
+/* ── DETAIL VIEW ──────────────────────────────────────────── */
+function buildDetail(p){
+  const a=avg(p.measures);
+  const rc=a>=0.7?'on-track':a>=0.4?'in-progress':'needs-attn';
+  const zone=isSweet(a)
+    ?'🎯 Target zone — like hitting 70% of grant aims: excellent progress'
+    :a>=0.7?'Strong execution — confirm goals remain ambitious'
+    :a>=0.4?'Making progress — review blockers if needed'
+    :'Early stage — intervention may be needed';
+
+  /* 6-column measures table: #&Type | What | Target | Current | Score | Owner+⚠ */
+  const mRows=p.measures.map(m=>`<tr>
+    <td style="white-space:nowrap">
+      <span class="kr-num">${m.n}</span>
+      <div><span class="${m.type==='must'?'type-must':'type-stretch'}">${m.type==='must'?'✅ Must Achieve':'🚀 Stretch Goal'}</span></div>
+    </td>
+    <td class="editable-cell" style="min-width:170px">${m.text}</td>
+    <td style="color:var(--gold-web);font-weight:700;white-space:nowrap">${m.target}</td>
+    <td class="editable-cell">${m.current}</td>
+    <td>
+      <div class="score-cell">
+        <span class="score-cell-num" style="color:${sColor(m.score)}">${disp(m.score)}</span>
+        <span class="score-cell-lbl" style="color:${sColor(m.score)}">${sLabel(m.score)}${isSweet(m.score)?' 🎯':''}</span>
+        <div class="score-cell-bar"><div class="score-cell-fill" style="width:${m.score*100}%;background:${sColor(m.score)}"></div></div>
+      </div>
+    </td>
+    <td style="white-space:nowrap">
+      ${m.owner}
+      <span class="risk-icon" data-tip="<strong>What could slow this:</strong><br>${esc(m.risk)}">⚠</span>
+    </td>
+  </tr>`).join('');
+
+  const aRows=p.actions.map(a=>`<tr>
+    <td class="editable-cell" style="min-width:160px">${a.text}</td>
+    <td><span class="kr-lnk">${a.m}</span></td>
+    <td>${a.owner}</td>
+    <td style="white-space:nowrap"><span class="s-dot" style="background:${statusDot(a.status)}"></span>${statusLbl(a.status)}</td>
+    <td class="editable-cell" style="font-size:.77rem;color:var(--text-sub);min-width:160px">${a.pm}</td>
+  </tr>`).join('');
+
+  const tCards=p.targets.map(t=>`<div class="kpi-card">
+    <div class="kpi-m">${t.label}</div>
+    <div class="kpi-c">${t.current}</div>
+    <div class="kpi-t">Target: ${t.target}</div>
+    ${t.pct
+      ?`<div class="kpi-bar"><div class="kpi-bar-fill" style="width:${t.pct}"></div></div>
+        <div style="font-size:.65rem;color:var(--text-sub);margin-top:.25rem;font-weight:600">${t.pct} toward target</div>`
+      :`<div class="kpi-note">📍 FY26 Baseline Year — tracking starts now</div>`}
+  </div>`).join('');
+
+  return`
+  ${p.decision?`<div class="action-box"><div class="action-lbl">⚡ Cabinet Input Needed</div><div class="action-text">${p.decision}</div></div>`:''}
+  <div class="dheader">
+    <div class="dh-main">
+      <div style="flex:1;min-width:0">
+        <div style="font-size:.65rem;color:var(--text-sub);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:.25rem">${p.num} · Steering Team Scorecard</div>
+        <div class="dh-name">${p.icon} ${p.name}</div>
+        <div class="dh-rewire">${p.rewire}</div>
+      </div>
+      <div class="dh-score-col">
+        <div class="dh-score-num" style="color:${sColor(a)}">${disp(a)}<span style="font-size:.9rem;color:var(--text-sub);font-weight:500">/10</span></div>
+        <div class="dh-score-lbl" style="color:${sColor(a)}">${sLabel(a)}${isSweet(a)?' 🎯':''}</div>
+        <div class="dh-score-note">
+          ${zone}
+          <span class="ii" data-tip="<strong>The grant analogy:</strong><br>Think of this pillar like a grant with ambitious aims. Hitting 70% of milestones (7/10) is excellent. The target zone is 6–7. Scoring 10 every time would mean goals were not ambitious enough.">ℹ</span>
+        </div>
+      </div>
+    </div>
+    <div class="dh-meta">
+      <div><div class="dm-lbl">Goal Sponsor</div><div class="dm-val">${p.sponsor}</div></div>
+      <div><div class="dm-lbl">Team Lead</div><div class="dm-val">${p.lead}</div></div>
+      <div><div class="dm-lbl">Project Manager</div><div class="dm-val">${p.pm}</div></div>
+      <div><div class="dm-lbl">Last Updated</div><div class="dm-val" id="luDate">${p.lastUpdated}</div></div>
+    </div>
+  </div>
+  <div class="risk-box">
+    <div class="risk-lbl">⚠ Main Risk to Watch</div>
+    <div class="risk-text">${p.keyRisk}</div>
+  </div>
+  <div class="obj-box">
+    <div class="obj-lbl">What we are trying to achieve this cycle</div>
+    <div class="obj-text">${p.objective}</div>
+  </div>
+  <div class="sec-hdr">
+    <div class="sec-title">
+      Success Measures
+      <span class="ii" data-tip="<strong>Success Measures</strong> define exactly how we know if we have achieved our goal. Each is scored 0–10. Like a grant: hitting 70% of ambitious milestones is excellent. Must Achieve = 100% expected. Stretch Goal = reaching 70% counts as a win.">ℹ</span>
+    </div>
+    <span class="stag stag-gold">${p.measures.filter(m=>m.type==='must').length} Must Achieve</span>
+    <span class="stag stag-teal">${p.measures.filter(m=>m.type==='stretch').length} Stretch</span>
+    <span class="sec-note">Steering Team owns these</span>
+    <button class="btn-nav" style="margin-left:0;font-size:.7rem;padding:5px 10px" onclick="toggleEdit(this,${p.id})">✏ Edit</button>
+  </div>
+  <div class="tw"><table>
+    <thead><tr>
+      <th data-tip="The measure number and goal type. <strong>Must Achieve</strong>: we expect 100% delivery. <strong>Stretch Goal</strong>: like an R01 reach aim — hitting 70% is excellent.">Measure &amp; Type</th>
+      <th data-tip="The specific outcome we need to achieve — what success looks like.">What We're Measuring</th>
+      <th data-tip="The exact number or milestone we committed to this cycle.">Target</th>
+      <th data-tip="Where things stand right now, updated by the Project Manager.">Current Status</th>
+      <th data-tip="Progress score from 0–10. Like a grant with ambitious aims: hitting 70% of milestones (7/10) is excellent. Target zone is 6–7. Consistently scoring 10 would mean goals were not ambitious enough.">Score (0–10) ℹ</th>
+      <th data-tip="Person accountable for this result. The ⚠ icon shows what could slow progress — hover to see.">Owner ℹ</th>
+    </tr></thead>
+    <tbody>${mRows}</tbody>
+  </table></div>
+  <div class="sec-hdr">
+    <div class="sec-title">
+      Active Work
+      <span class="ii" data-tip="<strong>Active Work</strong> — the specific projects and tasks underway right now to deliver on the Success Measures above. Owned and updated by the Project Manager.">ℹ</span>
+    </div>
+    <span class="stag stag-gold">Current Actions</span>
+    <span class="sec-note">${p.pm} owns these</span>
+  </div>
+  <div class="tw"><table>
+    <thead><tr>
+      <th data-tip="The specific project or task currently underway.">What We're Doing</th>
+      <th data-tip="Which Success Measure this work supports.">Linked To</th>
+      <th data-tip="The person responsible for this action.">Owner</th>
+      <th data-tip="Current progress status.">Status</th>
+      <th data-tip="Latest update from the Project Manager.">PM Update</th>
+    </tr></thead>
+    <tbody>${aRows}</tbody>
+  </table></div>
+  <div class="sec-hdr">
+    <div class="sec-title">
+      Long-Range Targets
+      <span class="ii" data-tip="<strong>Long-Range Targets</strong> are the multi-year REWIRE 2030 destination numbers. These are different from annual progress scores — they show where we are trying to get to by 2030, not how we are doing this cycle.">ℹ</span>
+    </div>
+    <span class="stag stag-teal">Multi-Year Horizon</span>
+    <span class="sec-note" style="font-style:italic">Destination metrics — separate from annual scores</span>
+  </div>
+  <div class="kpi-grid">${tCards}</div>
+  <div class="dec-section">
+    <div class="dec-sec-title">📋 Cabinet Decisions Log
+      <span style="font-size:.71rem;color:var(--text-sub);font-weight:500">— record key decisions made about this pillar</span>
+    </div>
+    <div class="dec-form">
+      <textarea id="decText-${p.id}" placeholder="Describe the decision that was made…"></textarea>
+      <div class="dec-form-row">
+        <label style="font-size:.73rem;color:var(--text-sub);font-weight:700;white-space:nowrap">Made by:</label>
+        <input class="dec-input" id="decBy-${p.id}" value="Cabinet" placeholder="Who made this decision">
+        <select class="dec-select" id="decM-${p.id}">
+          <option value="N/A">Not linked to a specific measure</option>
+          <option>M-1</option><option>M-2</option><option>M-3</option><option>M-4</option><option>M-5</option>
+        </select>
+        <button class="btn-log" onclick="logDec(${p.id})">Record Decision</button>
+      </div>
+    </div>
+    <div id="decList-${p.id}">${renderPillarDecs(p.id)}</div>
+  </div>`;
+}
+
+function showPillar(id){
+  currentPillarId=id;
+  const p=PILLARS[id];
+  const dv=document.getElementById('detail-view');
+  dv.innerHTML=
+    `<button class="back-btn" onclick="showDashboard()">← Back to All Pillars</button>
+     <div class="breadcrumb">${p.num} · ${p.name.replace(/&amp;/g,'&')}</div>`+
+    buildDetail(p);
+  document.getElementById('dashboard-view').style.display='none';
+  document.getElementById('decisions-view').style.display='none';
+  dv.style.display='';
+  document.getElementById('saveBtn').style.display='none';
+  navActive(id+1);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleEdit(btn,pid){
+  const editing=btn.textContent.includes('Edit');
+  btn.textContent=editing?'✅ Done':'✏ Edit';
+  document.querySelectorAll('#detail-view .editable-cell').forEach(c=>c.contentEditable=editing?'true':'false');
+  const sb=document.getElementById('saveBtn');
+  sb.style.display=editing?'block':'none';
+  sb.onclick=()=>saveChanges(pid);
+}
+
+function saveChanges(pid){
+  const p=PILLARS.find(x=>x.id===pid);if(!p)return;
+  const cells=[...document.querySelectorAll('#detail-view .editable-cell')];
+  /* measures: 2 editable cells each (text=even, current=odd), offset=5*2=10 */
+  p.measures.forEach((m,i)=>{
+    if(cells[i*2])m.text=cells[i*2].textContent;
+    if(cells[i*2+1])m.current=cells[i*2+1].textContent;
+  });
+  const offset=p.measures.length*2;
+  p.actions.forEach((a,i)=>{
+    if(cells[offset+i*2])a.text=cells[offset+i*2].textContent;
+    if(cells[offset+i*2+1])a.pm=cells[offset+i*2+1].textContent;
+  });
+  p.lastUpdated=new Date().toISOString().split('T')[0];
+  const lu=document.getElementById('luDate');if(lu)lu.textContent=p.lastUpdated;
+  try{localStorage.setItem('r30_pillars',JSON.stringify(PILLARS));}catch{}
+  document.getElementById('saveBtn').style.display='none';
+  document.querySelectorAll('#detail-view .editable-cell').forEach(c=>c.contentEditable='false');
+  const eb=document.querySelector('#detail-view .btn-nav');if(eb)eb.textContent='✏ Edit';
+  toast('Changes saved ✓','#008C95');
+}
+
+/* ── GLOBAL DECISIONS ─────────────────────────────────────── */
+function showDecisions(){
+  document.getElementById('dashboard-view').style.display='none';
+  document.getElementById('detail-view').style.display='none';
+  document.getElementById('saveBtn').style.display='none';
+  const ptC=['pt0','pt1','pt2','pt3'];
+  const rows=DECISIONS.map(d=>`<tr>
+    <td style="white-space:nowrap;font-size:.77rem;color:var(--text-sub)">${d.dateDisplay||d.timestamp?.slice(0,10)||'—'}</td>
+    <td><span class="pillar-tag ${ptC[d.pillarId]||'pt0'}">${(d.pillarName||'—').replace(/&amp;/g,'&')}</span></td>
+    <td style="min-width:200px">${d.decision}</td>
+    <td>${d.madeBy||'Cabinet'}</td>
+    <td>${d.linkedM&&d.linkedM!=='N/A'?`<span class="kr-lnk">${d.linkedM}</span>`:'—'}</td>
+    <td><button class="btn-del" onclick="deleteDec('${d.id}',${d.pillarId||0})">🗑</button></td>
+  </tr>`).join('');
+  document.getElementById('decisions-view').innerHTML=
+    `<div class="pg-hdr">
+      <div class="gdec-hdr">📋 Cabinet Decisions Log</div>
+      <div class="gdec-sub">${DECISIONS.length} decision${DECISIONS.length!==1?'s':''} recorded · REWIRE 2030 · FY2026</div>
+    </div>
+    ${DECISIONS.length
+      ?`<div class="tw"><table>
+          <thead><tr>
+            <th data-tip="When this decision was recorded.">Date</th>
+            <th data-tip="Which strategic pillar this decision applies to.">Pillar</th>
+            <th data-tip="The decision that was made.">Decision</th>
+            <th data-tip="Who made or confirmed this decision.">Made By</th>
+            <th data-tip="Which Success Measure this decision is linked to, if any.">Linked To</th>
+            <th></th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table></div>`
+      :'<div style="color:var(--text-sub);font-size:.88rem;padding:1.5rem 0">No decisions recorded yet. Open any pillar and use the Cabinet Decisions Log.</div>'}`;
+  document.getElementById('decisions-view').style.display='';
+  navActive(5);
+}
+
+/* ── KEYBOARD NAV ─────────────────────────────────────────── */
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('detail-view').style.display==='none')return;
+  if(e.key==='ArrowRight'&&currentPillarId<3)showPillar(currentPillarId+1);
+  if(e.key==='ArrowLeft'&&currentPillarId>0)showPillar(currentPillarId-1);
+  if(e.key==='Escape')showDashboard();
+});
+
+window.onload=init;
 </script>
 </body>
 </html>
