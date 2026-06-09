@@ -4,148 +4,255 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>REWIRE 2030 Scorecards | WFUSM Academic Cabinet</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap');
-:root{--navy:#002B49;--nm:#003B5C;--nl:#0A2236;--tbl:#001E38;--gold:#9E7E38;--gl:#FDC314;--teal:#008C95;--grn:#6BA539;--red:#9B1B30;--yel:#FDC314;--org:#C17F00;--gm:#A7A8A9;--gd:#54565A;--text:#E8E8E8;--bd:rgba(158,126,56,.25)}
+/* ============================================================
+   REWIRE 2030 SCORECARDS — OKR EDITION
+   Scoring: Google OKR Scale 0.0–1.0 (re:Work + OKR Playbook)
+   Sweet Spot: 0.6–0.7 | Color: <0.4 gray · 0.4-0.69 gold · ≥0.7 teal
+   Palette: WFU Brand Guide (brand.wfu.edu) + Brand Bridge Nov 2025
+   Font: Proxima Nova / Arial
+   ============================================================ */
+:root{
+  --bg:#F4F5F5;--surface:#FFFFFF;--tbl-hdr:#F0F1F1;--gray-lt:#E6E7E8;
+  --gold:#9E7E38;--gl:#FDC314;--gold-ath:#CEB888;--gold-web:#8C6D2C;
+  --blue:#003B5C;--teal:#008C95;--teal-text:#007078;
+  --gray:#53565A;--gray-mid:#A7A8A9;
+  --text:#222222;--text-sub:#53565A;
+  --bd:rgba(158,126,56,.2);--bd-light:#E0E1E2;
+  --nm:#FFFFFF;--nl:#EAEBEC;--tbl:#FAFAFA;--gm:#53565A;--gd:#53565A;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--navy);color:var(--text);font-family:'Nunito Sans','Segoe UI',sans-serif;min-height:100vh}
-.nav{background:var(--nm);border-bottom:3px solid var(--gold);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:1000;gap:.75rem;flex-wrap:wrap;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+body{background:var(--bg);color:var(--text);font-family:'Proxima Nova',Arial,sans-serif;min-height:100vh}
+
+/* NAV */
+.nav{background:var(--blue);border-bottom:3px solid var(--gold);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:1000;gap:.75rem;flex-wrap:wrap;box-shadow:0 2px 12px rgba(0,59,92,.3)}
 .nav-brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.nav-logo{width:40px;height:40px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--navy);font-size:13px;letter-spacing:-.5px}
+.nav-logo{width:40px;height:40px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#fff;font-size:13px;letter-spacing:-.5px}
 .nav-title{font-size:1.05rem;font-weight:800;color:var(--gl);letter-spacing:.5px}
-.nav-sub{font-size:.62rem;color:var(--gm)}
+.nav-sub{font-size:.62rem;color:rgba(255,255,255,.6)}
 .nav-pills{display:flex;gap:.4rem;flex-wrap:wrap}
-.np{background:rgba(158,126,56,.1);border:1px solid var(--bd);color:var(--text);padding:5px 13px;border-radius:20px;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit}
+.np{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 13px;border-radius:20px;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit}
 .np:hover,.np.active{background:var(--gold);color:#fff;border-color:var(--gold)}
 .nav-right{display:flex;align-items:center;gap:.7rem;flex-shrink:0}
-.conn-dot{width:9px;height:9px;border-radius:50%;background:#888;flex-shrink:0}
-.conn-dot.ok{background:var(--grn);box-shadow:0 0 8px rgba(107,165,57,.5)}
-.conn-dot.off{background:var(--org);box-shadow:0 0 8px rgba(193,127,0,.5)}
-.conn-lbl{font-size:.65rem;color:var(--gm);font-weight:600}
-.btn-sm{background:rgba(158,126,56,.1);border:1px solid var(--bd);color:var(--gold);padding:6px 13px;border-radius:7px;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
-.btn-sm:hover{background:var(--gold);color:#fff}
-.main{padding:1.5rem;max-width:1380px;margin:0 auto}
-.loading{position:fixed;inset:0;background:rgba(0,43,73,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2000}
-.loading p{color:var(--gl);font-size:.85rem;font-weight:600;margin-top:1rem}
-.spinner{width:50px;height:50px;border:4px solid rgba(158,126,56,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+.conn-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3);flex-shrink:0}
+.conn-dot.ok{background:#4ABA7A;box-shadow:0 0 8px rgba(74,186,122,.5)}
+.conn-dot.off{background:var(--gl);box-shadow:0 0 8px rgba(253,195,20,.4)}
+.conn-lbl{font-size:.65rem;color:rgba(255,255,255,.7);font-weight:600}
+.btn-sm{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 13px;border-radius:7px;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.btn-sm:hover{background:var(--gold);border-color:var(--gold)}
+
+/* MAIN */
+.main{padding:1.5rem;max-width:1400px;margin:0 auto}
+
+/* LOADING */
+.loading{position:fixed;inset:0;background:rgba(0,59,92,.96);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2000}
+.loading p{color:var(--gl);font-size:.85rem;font-weight:600;margin-top:1rem;letter-spacing:.5px}
+.spinner{width:50px;height:50px;border:4px solid rgba(158,126,56,.25);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,27,46,.88);display:none;align-items:center;justify-content:center;z-index:3000}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,59,92,.45);display:none;align-items:center;justify-content:center;z-index:3000}
 .modal-overlay.open{display:flex}
-.modal-box{background:var(--nm);border:1px solid var(--bd);border-radius:14px;padding:2rem;max-width:580px;width:90%;position:relative}
-.modal-box h3{color:var(--gl);margin-bottom:1rem}
-.modal-box code{display:block;background:var(--tbl);padding:.75rem;border-radius:6px;font-size:.76rem;color:var(--teal);margin:.4rem 0 1rem;word-break:break-all;border:1px solid rgba(0,140,149,.2)}
-.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--gm);font-size:1.3rem;cursor:pointer}
+.modal-box{background:var(--surface);border:1px solid var(--bd-light);border-radius:14px;padding:2rem;max-width:620px;width:90%;position:relative;box-shadow:0 20px 60px rgba(0,59,92,.2)}
+.modal-box h3{color:var(--blue);margin-bottom:1rem;font-size:1.05rem}
+.modal-box code{display:block;background:#F0F8F9;padding:.75rem;border-radius:6px;font-size:.76rem;color:var(--teal-text);margin:.4rem 0 1rem;word-break:break-all;border:1px solid rgba(0,140,149,.2)}
+.modal-box p{font-size:.8rem;color:var(--text-sub);margin-bottom:.3rem}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--gray);font-size:1.3rem;cursor:pointer}
+.modal-close:hover{color:var(--text)}
+
+/* OKR REFERENCE PANEL inside modal */
+.okr-ref-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin:.75rem 0}
+.okr-ref-item{border-radius:7px;padding:.6rem .75rem;font-size:.75rem;font-weight:700}
+.okr-ref-item.green{background:rgba(0,140,149,.08);color:var(--teal-text);border:1px solid rgba(0,140,149,.2)}
+.okr-ref-item.sweet{background:rgba(0,112,120,.12);color:var(--teal-text);border:2px solid var(--teal);position:relative}
+.okr-ref-item.sweet::after{content:'TARGET';position:absolute;top:-8px;right:8px;background:var(--teal);color:#fff;font-size:.55rem;padding:1px 5px;border-radius:3px}
+.okr-ref-item.yellow{background:rgba(158,126,56,.08);color:var(--gold-web);border:1px solid rgba(158,126,56,.2)}
+.okr-ref-item.gray{background:rgba(83,86,90,.06);color:var(--gray);border:1px solid rgba(83,86,90,.2)}
+
+/* TOASTS */
 #toastContainer{position:fixed;bottom:1.5rem;right:1.5rem;z-index:4000;display:flex;flex-direction:column;gap:.5rem}
-.toast{padding:10px 20px;border-radius:8px;font-size:.82rem;font-weight:700;color:#fff;box-shadow:0 4px 20px rgba(0,0,0,.5);animation:slideIn .3s ease;font-family:inherit}
+.toast{padding:10px 20px;border-radius:8px;font-size:.82rem;font-weight:700;color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.2);animation:slideIn .3s ease;font-family:inherit}
 @keyframes slideIn{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}
-.alert-box{background:rgba(155,27,48,.1);border:1px solid rgba(155,27,48,.35);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem}
-.alert-title{color:#C94060;font-weight:800;font-size:.82rem;margin-bottom:.5rem;display:flex;align-items:center;gap:6px}
-.alert-item{font-size:.78rem;color:var(--text);padding:3px 0 3px 10px;border-left:2px solid var(--red);margin:3px 0}
+
+/* SAVE BUTTON */
+.save-btn{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;padding:11px 24px;border-radius:8px;font-weight:800;font-size:.85rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.15);z-index:1500;display:none;border:none;font-family:inherit}
+.save-btn:hover{background:var(--gold-web)}
+
+/* ALERT BOX */
+.alert-box{background:#FFF8F0;border:1px solid rgba(158,126,56,.3);border-left:4px solid var(--gold);border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.25rem}
+.alert-title{color:var(--gold-web);font-weight:800;font-size:.82rem;margin-bottom:.5rem;display:flex;align-items:center;gap:6px}
+.alert-item{font-size:.78rem;color:var(--text);padding:4px 0 4px 10px;border-left:2px solid var(--gray);margin:3px 0}
+
+/* ANTI-PATTERN ALERT */
+.antipatt-box{background:rgba(0,59,92,.04);border:1px solid rgba(0,59,92,.15);border-left:4px solid var(--blue);border-radius:8px;padding:.85rem 1.1rem;margin-bottom:1rem}
+.antipatt-title{font-size:.72rem;color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.35rem}
+.antipatt-item{font-size:.76rem;color:var(--text-sub);padding:2px 0 2px 8px;border-left:2px solid rgba(0,59,92,.25);margin:2px 0}
+
+/* OKR HEALTH BANNER */
+.okr-health-bar{border-radius:10px;padding:.85rem 1.1rem;margin-bottom:1.1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.okr-health-bar.sweet-spot{background:rgba(0,140,149,.06);border:1.5px solid var(--teal)}
+.okr-health-bar.on-track{background:rgba(0,140,149,.04);border:1px solid rgba(0,140,149,.25)}
+.okr-health-bar.warn-high{background:rgba(158,126,56,.06);border:1.5px solid var(--gold)}
+.okr-health-bar.needs-attn{background:rgba(158,126,56,.05);border:1px solid rgba(158,126,56,.3)}
+.okr-health-bar.at-risk{background:rgba(83,86,90,.06);border:1px solid rgba(83,86,90,.3)}
+.health-label{font-size:.82rem;font-weight:800;flex:1}
+.health-score{font-size:1.35rem;font-weight:900;min-width:60px;text-align:right}
+.health-tip{font-size:.72rem;color:var(--text-sub);width:100%;margin-top:.25rem;line-height:1.4}
+.sweet-spot-zone{font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:4px;background:var(--teal);color:#fff}
+
+/* FILTER BAR */
 .filter-bar{display:flex;gap:.75rem;margin-bottom:1.25rem;flex-wrap:wrap;align-items:center}
-.search{flex:1;min-width:200px;background:var(--nm);border:1px solid var(--bd);border-radius:7px;padding:8px 14px;color:var(--text);font-size:.83rem;outline:none;font-family:inherit}
-.search:focus{border-color:var(--gold)}.search::placeholder{color:var(--gm)}
-.filter-lbl{font-size:.72rem;color:var(--gm);font-weight:600}
-.fb{background:var(--nm);border:1px solid var(--bd);color:var(--text);padding:6px 12px;border-radius:6px;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit}
-.fb:hover{border-color:var(--gold);color:var(--gl)}.fb.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+.search{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--bd-light);border-radius:7px;padding:8px 14px;color:var(--text);font-size:.83rem;outline:none;font-family:inherit;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.search:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(158,126,56,.1)}
+.search::placeholder{color:var(--gray-mid)}
+.filter-lbl{font-size:.72rem;color:var(--text-sub);font-weight:600}
+.fb{background:var(--surface);border:1px solid var(--bd-light);color:var(--text-sub);padding:6px 12px;border-radius:6px;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.fb:hover{border-color:var(--gold);color:var(--gold-web)}
+.fb.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+/* GRID */
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
 @media(max-width:820px){.grid-2{grid-template-columns:1fr}}
-.pcard{background:var(--nm);border:1px solid var(--bd);border-radius:14px;padding:1.35rem;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+
+/* PILLAR CARDS */
+.pcard{background:var(--surface);border:1px solid var(--bd-light);border-radius:14px;padding:1.35rem;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(0,59,92,.07)}
 .pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--gl))}
-.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.5);border-color:var(--gold)}
+.pcard:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,59,92,.14);border-color:rgba(158,126,56,.35)}
 .pcard.hidden{display:none}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.9rem}
 .cicon{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
-.cicon.p1{background:rgba(0,140,149,.15)}.cicon.p2{background:rgba(158,126,56,.15)}
-.cicon.p3{background:rgba(107,165,57,.15)}.cicon.p4{background:rgba(134,31,65,.15)}
+.cicon.p1{background:rgba(0,140,149,.1)}.cicon.p2{background:rgba(158,126,56,.1)}
+.cicon.p3{background:rgba(206,184,136,.15)}.cicon.p4{background:rgba(0,59,92,.08)}
 .badges{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
 .badge{padding:3px 10px;border-radius:10px;font-size:.68rem;font-weight:800;letter-spacing:.3px}
-.badge-y{background:rgba(253,195,20,.15);color:var(--yel);border:1px solid rgba(253,195,20,.3)}
-.badge-r{background:rgba(155,27,48,.15);color:#C94060;border:1px solid rgba(155,27,48,.3)}
-.badge-g{background:rgba(107,165,57,.15);color:var(--grn);border:1px solid rgba(107,165,57,.3)}
-.badge-dec{background:rgba(193,127,0,.15);color:#E8A000;border:1px solid rgba(193,127,0,.3);font-size:.65rem}
-.cnum{font-size:.68rem;color:var(--gm);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:3px}
-.ctitle{font-size:1.05rem;font-weight:800;margin-bottom:4px;color:#fff}
-.crewire{font-size:.7rem;color:var(--gl);margin-bottom:.6rem;line-height:1.4;font-weight:600}
-.cobj{font-size:.78rem;color:var(--text);font-style:italic;line-height:1.45;margin-bottom:.9rem}
+.badge-y{background:rgba(158,126,56,.1);color:var(--gold-web);border:1px solid rgba(158,126,56,.25)}
+.badge-r{background:rgba(83,86,90,.1);color:var(--gray);border:1px solid rgba(83,86,90,.25)}
+.badge-g{background:rgba(0,140,149,.08);color:var(--teal-text);border:1px solid rgba(0,140,149,.2)}
+.badge-dec{background:rgba(253,195,20,.1);color:var(--gold-web);border:1px solid rgba(158,126,56,.2);font-size:.65rem}
+.badge-sweet{background:rgba(0,140,149,.1);color:var(--teal-text);border:1.5px solid var(--teal);font-size:.63rem}
+.badge-sandbag{background:rgba(158,126,56,.1);color:var(--gold-web);border:1px solid var(--gold);font-size:.63rem}
+.cnum{font-size:.68rem;color:var(--text-sub);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:3px}
+.ctitle{font-size:1.05rem;font-weight:800;margin-bottom:4px;color:var(--blue)}
+.crewire{font-size:.7rem;color:var(--gold-web);margin-bottom:.6rem;line-height:1.4;font-weight:600}
+.cobj{font-size:.78rem;color:var(--text-sub);font-style:italic;line-height:1.45;margin-bottom:.9rem}
+
+/* SCORE RING */
 .conf-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.8rem}
 .ring-wrap{position:relative;flex-shrink:0}.ring-svg{transform:rotate(-90deg)}
-.ring-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.88rem;font-weight:900}
-.conf-meta{flex:1}.conf-lbl{font-size:.68rem;color:var(--gm);margin-bottom:3px;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
-.conf-bg{background:var(--nl);border-radius:3px;height:5px;overflow:hidden}
+.ring-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.82rem;font-weight:900}
+.conf-meta{flex:1}
+.conf-lbl{font-size:.68rem;color:var(--text-sub);margin-bottom:3px;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+.conf-bg{background:var(--gray-lt);border-radius:3px;height:5px;overflow:hidden}
 .conf-fill{height:100%;border-radius:3px;transition:width 1s ease}
 .cmeta{display:flex;gap:1.25rem;flex-wrap:wrap}
-.ml{font-size:.65rem;color:var(--gm);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.ml{font-size:.65rem;color:var(--text-sub);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
 .mv{font-size:.79rem;color:var(--text);font-weight:700}
-.detail-back{color:var(--gold);font-size:.83rem;cursor:pointer;padding:6px 0;margin-bottom:1.25rem;display:inline-flex;align-items:center;gap:6px;font-weight:700;background:none;border:none;font-family:inherit}
-.detail-back:hover{color:var(--gl)}
-.dheader{background:var(--nm);border:1px solid var(--bd);border-radius:14px;padding:1.5rem;margin-bottom:1.25rem;position:relative;overflow:hidden}
+
+/* DETAIL VIEW */
+.detail-back{color:var(--gold-web);font-size:.83rem;cursor:pointer;padding:6px 0;margin-bottom:1.25rem;display:inline-flex;align-items:center;gap:6px;font-weight:700;background:none;border:none;font-family:inherit}
+.detail-back:hover{color:var(--gold)}
+.dheader{background:var(--surface);border:1px solid var(--bd-light);border-radius:14px;padding:1.5rem;margin-bottom:1.25rem;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(0,59,92,.07)}
 .dheader::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--gl))}
 .dh-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1rem}
-.dname{font-size:1.5rem;font-weight:900;color:#fff}
-.drewire{font-size:.82rem;color:var(--gl);margin-top:3px;line-height:1.4;font-weight:600}
-.dmeta{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.9rem;padding-top:1rem;border-top:1px solid var(--bd);margin-bottom:1rem}
-.risk-box{background:rgba(155,27,48,.08);border:1px solid rgba(155,27,48,.3);border-radius:8px;padding:.75rem 1rem;margin-bottom:.75rem}
-.risk-lbl{font-size:.63rem;color:#C94060;text-transform:uppercase;font-weight:800;letter-spacing:.5px;margin-bottom:3px}
-.dec-need-box{background:rgba(193,127,0,.08);border:1px solid rgba(193,127,0,.3);border-radius:8px;padding:.75rem 1rem}
-.dec-need-lbl{font-size:.63rem;color:#E8A000;text-transform:uppercase;font-weight:800;letter-spacing:.5px;margin-bottom:3px}
-.obj-box{background:rgba(158,126,56,.07);border:1px solid rgba(158,126,56,.35);border-radius:10px;padding:1.1rem 1.35rem;margin-bottom:1.25rem}
-.obj-lbl{font-size:.68rem;color:var(--gl);font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
-.obj-txt{font-size:.98rem;color:#fff;font-weight:700;line-height:1.6}
+.dname{font-size:1.5rem;font-weight:900;color:var(--blue)}
+.drewire{font-size:.82rem;color:var(--gold-web);margin-top:3px;line-height:1.4;font-weight:600}
+.dmeta{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.9rem;padding-top:1rem;border-top:1px solid var(--bd-light);margin-bottom:1rem}
+.risk-box{background:#F9F9FA;border:1px solid var(--bd-light);border-left:3px solid var(--gray);border-radius:8px;padding:.75rem 1rem;margin-bottom:.75rem}
+.risk-lbl{font-size:.63rem;color:var(--gray);text-transform:uppercase;font-weight:800;letter-spacing:.5px;margin-bottom:3px}
+.dec-need-box{background:#FFFBF0;border:1px solid rgba(158,126,56,.25);border-left:3px solid var(--gold);border-radius:8px;padding:.75rem 1rem;margin-bottom:.75rem}
+.dec-need-lbl{font-size:.63rem;color:var(--gold-web);text-transform:uppercase;font-weight:800;letter-spacing:.5px;margin-bottom:3px}
+.box-txt{font-size:.8rem;color:var(--text);line-height:1.5}
+.obj-box{background:linear-gradient(135deg,rgba(0,59,92,.03),rgba(0,140,149,.03));border:1px solid rgba(0,59,92,.1);border-radius:10px;padding:1.1rem 1.35rem;margin-bottom:1.25rem}
+.obj-lbl{font-size:.68rem;color:var(--teal-text);font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.obj-txt{font-size:.98rem;color:var(--blue);font-weight:700;line-height:1.6}
 .sec-hdr{display:flex;align-items:center;gap:10px;margin-bottom:.85rem;flex-wrap:wrap}
-.sec-title{font-size:.95rem;font-weight:800;color:#fff}
-.sec-tag{background:rgba(158,126,56,.12);color:var(--gl);font-size:.63rem;font-weight:800;padding:3px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px}
-.sec-desc{font-size:.72rem;color:var(--gm);margin-left:auto;font-weight:600}
-.table-wrap{background:var(--tbl);border:1px solid var(--bd);border-radius:10px;overflow:auto;margin-bottom:1.25rem}
-table{width:100%;border-collapse:collapse;min-width:600px}
-thead tr{background:rgba(158,126,56,.08)}
-th{padding:10px 14px;font-size:.7rem;font-weight:800;color:var(--gl);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--bd);white-space:nowrap}
-td{padding:9px 14px;font-size:.8rem;color:var(--text);border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top;line-height:1.4}
+.sec-title{font-size:.95rem;font-weight:800;color:var(--blue)}
+.sec-tag{background:rgba(158,126,56,.08);color:var(--gold-web);font-size:.63rem;font-weight:800;padding:3px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;border:1px solid rgba(158,126,56,.2)}
+.sec-tag-teal{background:rgba(0,140,149,.08);color:var(--teal-text);font-size:.63rem;font-weight:800;padding:3px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;border:1px solid rgba(0,140,149,.2)}
+.sec-desc{font-size:.72rem;color:var(--text-sub);margin-left:auto;font-weight:600}
+
+/* TABLES */
+.table-wrap{background:var(--surface);border:1px solid var(--bd-light);border-radius:10px;overflow:auto;margin-bottom:1.25rem;box-shadow:0 1px 3px rgba(0,59,92,.06)}
+table{width:100%;border-collapse:collapse;min-width:700px}
+thead tr{background:var(--tbl-hdr)}
+th{padding:10px 14px;font-size:.7rem;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--bd-light);white-space:nowrap}
+td{padding:9px 14px;font-size:.8rem;color:var(--text);border-bottom:1px solid var(--bd-light);vertical-align:top;line-height:1.4}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:rgba(158,126,56,.03)}
-.kr-n{background:rgba(158,126,56,.15);color:var(--gl);font-weight:900;font-size:.78rem;padding:2px 8px;border-radius:4px}
-.kr-lnk{background:rgba(0,140,149,.15);color:var(--teal);font-size:.7rem;padding:2px 7px;border-radius:4px}
-.cdot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px}
-.cdot.red{background:var(--red)}.cdot.yellow{background:var(--yel)}.cdot.green{background:var(--grn)}
-.mini-bar-wrap{background:var(--nl);border-radius:3px;height:5px;width:50px;overflow:hidden;display:inline-block;vertical-align:middle;margin-left:5px}
-.mini-fill{height:100%;border-radius:3px}
-td[contenteditable=true]{outline:1px solid var(--gold);border-radius:3px;background:rgba(158,126,56,.06)}
+tr:hover td{background:#FAFBFC}
+.kr-n{background:rgba(158,126,56,.1);color:var(--gold-web);font-weight:900;font-size:.78rem;padding:2px 8px;border-radius:4px;border:1px solid rgba(158,126,56,.2)}
+.kr-lnk{background:rgba(0,140,149,.08);color:var(--teal-text);font-size:.7rem;padding:2px 7px;border-radius:4px;border:1px solid rgba(0,140,149,.2)}
+
+/* KR TYPE BADGES */
+.kr-committed{background:rgba(0,140,149,.08);color:var(--teal-text);font-size:.65rem;font-weight:800;padding:2px 7px;border-radius:10px;border:1px solid rgba(0,140,149,.2);white-space:nowrap}
+.kr-aspirational{background:rgba(158,126,56,.1);color:var(--gold-web);font-size:.65rem;font-weight:800;padding:2px 7px;border-radius:10px;border:1px solid rgba(158,126,56,.25);white-space:nowrap}
+
+/* SCORE DISPLAY */
+.score-val{font-size:.95rem;font-weight:900}
+.score-bar-wrap{background:var(--gray-lt);border-radius:3px;height:4px;width:60px;overflow:hidden;display:inline-block;vertical-align:middle;margin-left:6px}
+.score-bar-fill{height:100%;border-radius:3px}
+.score-sweet{font-size:.58rem;background:var(--teal);color:#fff;padding:1px 4px;border-radius:3px;margin-left:4px;font-weight:800;vertical-align:middle}
+
+td[contenteditable=true]{outline:2px solid var(--gold);border-radius:3px;background:rgba(158,126,56,.04)}
+
+/* KPI CARDS */
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:1.25rem}
-.kpi-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:1rem}
-.kpi-m{font-size:.73rem;color:var(--gm);margin-bottom:5px;line-height:1.35;font-weight:600}
-.kpi-c{font-size:1.15rem;font-weight:900;margin-bottom:3px;color:#fff}
-.kpi-t{font-size:.72rem;color:var(--gl);font-weight:700}
-.pb-wrap{background:var(--nl);border-radius:3px;height:5px;overflow:hidden;margin-top:5px}
+.kpi-card{background:linear-gradient(135deg,rgba(0,59,92,.03),rgba(0,140,149,.03));border:1px solid rgba(0,59,92,.1);border-radius:9px;padding:1rem}
+.kpi-m{font-size:.73rem;color:var(--text-sub);margin-bottom:5px;line-height:1.35;font-weight:600}
+.kpi-c{font-size:1.15rem;font-weight:900;margin-bottom:3px;color:var(--blue)}
+.kpi-t{font-size:.72rem;color:var(--teal-text);font-weight:700}
+.pb-wrap{background:var(--gray-lt);border-radius:3px;height:5px;overflow:hidden;margin-top:5px}
 .pb-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gl))}
-.dec-section{background:rgba(0,140,149,.05);border:1px solid rgba(0,140,149,.25);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
-.dec-sec-hdr{font-size:.95rem;font-weight:800;color:var(--teal);margin-bottom:1rem}
-.dec-form{background:rgba(0,0,0,.2);border-radius:8px;padding:1rem;margin-bottom:1rem;border:1px solid rgba(0,140,149,.1)}
-.dec-form textarea{width:100%;background:var(--nm);border:1px solid var(--bd);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.82rem;outline:none;resize:vertical;min-height:60px;margin-bottom:.6rem;font-family:inherit}
-.dec-form textarea:focus{border-color:var(--teal)}
+
+/* OKR GRADING LEGEND (inline) */
+.okr-legend{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.25rem;padding:.85rem 1rem;background:var(--surface);border:1px solid var(--bd-light);border-radius:10px}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:6px}
+.legend-item.lg{background:rgba(0,140,149,.08);color:var(--teal-text);border:1px solid rgba(0,140,149,.2)}
+.legend-item.ls{background:rgba(0,112,120,.1);color:var(--teal-text);border:1.5px solid var(--teal)}
+.legend-item.ly{background:rgba(158,126,56,.08);color:var(--gold-web);border:1px solid rgba(158,126,56,.2)}
+.legend-item.lr{background:rgba(83,86,90,.07);color:var(--gray);border:1px solid rgba(83,86,90,.2)}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* DECISIONS */
+.dec-section{background:rgba(0,140,149,.03);border:1px solid rgba(0,140,149,.18);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem}
+.dec-sec-hdr{font-size:.95rem;font-weight:800;color:var(--teal-text);margin-bottom:1rem}
+.dec-form{background:var(--surface);border-radius:8px;padding:1rem;margin-bottom:1rem;border:1px solid var(--bd-light);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.dec-form textarea{width:100%;background:var(--bg);border:1px solid var(--bd-light);border-radius:6px;padding:8px 12px;color:var(--text);font-size:.82rem;outline:none;resize:vertical;min-height:60px;margin-bottom:.6rem;font-family:inherit}
+.dec-form textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,140,149,.08)}
 .dec-form-row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
-.dec-input{background:var(--nm);border:1px solid var(--bd);border-radius:6px;padding:7px 11px;color:var(--text);font-size:.8rem;outline:none;flex:1;min-width:120px;font-family:inherit}
+.dec-input{background:var(--bg);border:1px solid var(--bd-light);border-radius:6px;padding:7px 11px;color:var(--text);font-size:.8rem;outline:none;flex:1;min-width:120px;font-family:inherit}
 .dec-input:focus{border-color:var(--teal)}
-.dec-select{background:var(--nm);border:1px solid var(--bd);border-radius:6px;padding:7px 11px;color:var(--text);font-size:.8rem;outline:none;font-family:inherit}
-.btn-log{background:var(--teal);border:none;color:#fff;padding:8px 18px;border-radius:7px;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit}
-.btn-log:hover{background:#006E78}
-.dec-item{background:rgba(0,140,149,.05);border:1px solid rgba(0,140,149,.12);border-radius:8px;padding:.85rem;margin-bottom:.6rem;display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem}
+.dec-select{background:var(--bg);border:1px solid var(--bd-light);border-radius:6px;padding:7px 11px;color:var(--text);font-size:.8rem;outline:none;font-family:inherit}
+.btn-log{background:var(--teal);border:none;color:#fff;padding:8px 18px;border-radius:7px;font-size:.8rem;font-weight:800;cursor:pointer;font-family:inherit;transition:background .2s}
+.btn-log:hover{background:var(--teal-text)}
+.dec-item{background:var(--surface);border:1px solid rgba(0,140,149,.15);border-left:3px solid var(--teal);border-radius:8px;padding:.85rem;margin-bottom:.6rem;display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem}
 .dec-item-body{flex:1}
-.dec-date{display:inline-block;background:rgba(0,140,149,.2);color:var(--teal);font-size:.68rem;font-weight:800;padding:2px 8px;border-radius:4px;margin-bottom:5px}
+.dec-date{display:inline-block;background:rgba(0,140,149,.08);color:var(--teal-text);font-size:.68rem;font-weight:800;padding:2px 8px;border-radius:4px;margin-bottom:5px;border:1px solid rgba(0,140,149,.18)}
 .dec-text{font-size:.82rem;color:var(--text);line-height:1.45;margin-bottom:4px}
-.dec-meta{font-size:.7rem;color:var(--gm);font-weight:600}
-.dec-kr-tag{background:rgba(0,140,149,.15);color:var(--teal);font-size:.68rem;padding:2px 7px;border-radius:4px;margin-left:6px;font-weight:700}
-.btn-del{background:rgba(155,27,48,.15);border:1px solid rgba(155,27,48,.3);color:#C94060;padding:4px 9px;border-radius:5px;font-size:.75rem;cursor:pointer;font-family:inherit}
-.btn-del:hover{background:var(--red);color:#fff}
-.dec-empty{color:var(--gm);font-size:.8rem;font-style:italic;padding:.5rem 0}
-.gdec-title{font-size:1.4rem;font-weight:900;margin-bottom:.4rem;color:#fff}
-.gdec-sub{font-size:.82rem;color:var(--gm);margin-bottom:1.25rem;font-weight:600}
-.pt0{background:rgba(0,140,149,.15);color:#008C95}.pt1{background:rgba(158,126,56,.15);color:#9E7E38}
-.pt2{background:rgba(107,165,57,.15);color:#6BA539}.pt3{background:rgba(134,31,65,.15);color:#861F41}
+.dec-meta{font-size:.7rem;color:var(--text-sub);font-weight:600}
+.dec-kr-tag{background:rgba(0,140,149,.08);color:var(--teal-text);font-size:.68rem;padding:2px 7px;border-radius:4px;margin-left:6px;font-weight:700;border:1px solid rgba(0,140,149,.2)}
+.btn-del{background:rgba(83,86,90,.07);border:1px solid rgba(83,86,90,.2);color:var(--gray);padding:4px 9px;border-radius:5px;font-size:.75rem;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-del:hover{background:var(--gray);color:#fff}
+.dec-empty{color:var(--text-sub);font-size:.8rem;font-style:italic;padding:.5rem 0}
+.gdec-title{font-size:1.4rem;font-weight:900;margin-bottom:.4rem;color:var(--blue)}
+.gdec-sub{font-size:.82rem;color:var(--text-sub);margin-bottom:1.25rem;font-weight:600}
+.pt0{background:rgba(0,140,149,.08);color:var(--teal-text);border:1px solid rgba(0,140,149,.2)}
+.pt1{background:rgba(158,126,56,.08);color:var(--gold-web);border:1px solid rgba(158,126,56,.2)}
+.pt2{background:rgba(206,184,136,.12);color:#7A5C1E;border:1px solid rgba(206,184,136,.35)}
+.pt3{background:rgba(0,59,92,.07);color:var(--blue);border:1px solid rgba(0,59,92,.18)}
 .pillar-tag{display:inline-block;padding:2px 9px;border-radius:10px;font-size:.7rem;font-weight:800}
-.save-btn{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;padding:11px 24px;border-radius:8px;font-weight:800;font-size:.85rem;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.5);z-index:1500;display:none;border:none;font-family:inherit}
-.save-btn:hover{background:var(--gl);color:var(--navy)}
-::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:var(--navy)}
-::-webkit-scrollbar-thumb{background:var(--gd);border-radius:3px}
-::-webkit-scrollbar-thumb:hover{background:var(--gold)}
-@media print{.nav,.filter-bar,.save-btn,.btn-sm,.dec-form,.detail-back{display:none!important}#detail-view{display:block!important}#dashboard-view,#decisions-view{display:none!important}body{background:#fff;color:#000}.dheader,.pcard,.table-wrap,.obj-box,.dec-section{border:1px solid #ccc;break-inside:avoid}th,td{color:#000}th{background:#f5f5f5!important}}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gray-lt);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--gray)}
+
+/* PRINT */
+@media print{
+  .nav,.filter-bar,.save-btn,.btn-sm,.dec-form,.detail-back,.okr-legend{display:none!important}
+  #detail-view{display:block!important}
+  #dashboard-view,#decisions-view{display:none!important}
+  .dheader,.pcard,.table-wrap,.obj-box,.dec-section{border:1px solid #ccc;break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -160,7 +267,7 @@ td[contenteditable=true]{outline:1px solid var(--gold);border-radius:3px;backgro
     <div class="nav-logo">R30</div>
     <div>
       <div class="nav-title">REWIRE 2030 SCORECARDS</div>
-      <div class="nav-sub">Wake Forest University School of Medicine · Academic Cabinet</div>
+      <div class="nav-sub">Wake Forest University School of Medicine · Academic Cabinet · OKR Framework</div>
     </div>
   </div>
   <div class="nav-pills">
@@ -175,21 +282,30 @@ td[contenteditable=true]{outline:1px solid var(--gold);border-radius:3px;backgro
     <div class="conn-dot" id="connDot"></div>
     <span class="conn-lbl" id="connLbl">Connecting…</span>
     <button class="btn-sm" onclick="window.print()">⬇ Export PDF</button>
-    <button class="btn-sm" onclick="document.getElementById('spModal').classList.add('open')">ℹ SharePoint</button>
+    <button class="btn-sm" onclick="document.getElementById('spModal').classList.add('open')">📐 OKR Guide</button>
   </div>
 </nav>
 
+<!-- OKR GUIDE MODAL -->
 <div class="modal-overlay" id="spModal" onclick="if(event.target===this)this.classList.remove('open')">
   <div class="modal-box">
     <button class="modal-close" onclick="document.getElementById('spModal').classList.remove('open')">✕</button>
-    <h3>📌 SharePoint Embedding</h3>
-    <p style="font-size:.8rem;color:var(--text);margin-bottom:.3rem"><strong style="color:var(--gl)">Method 1 — Embed Web Part</strong></p>
-    <p style="font-size:.74rem;color:var(--gm);margin-bottom:.3rem">Edit page → Add web part → Embed → paste:</p>
-    <code>&lt;iframe src="https://YOUR-SERVER:3000" width="100%" height="950" frameborder="0" style="border:none;"&gt;&lt;/iframe&gt;</code>
-    <p style="font-size:.8rem;color:var(--text);margin-bottom:.3rem"><strong style="color:var(--gl)">Method 2 — Azure App Service</strong></p>
-    <code>az webapp up --name rewire-2030-scorecards --resource-group YOUR-RG --runtime "NODE:18-lts"</code>
-    <p style="font-size:.8rem;color:var(--text);margin-bottom:.3rem"><strong style="color:var(--gl)">Method 3 — SPFx Web Part</strong></p>
-    <p style="font-size:.74rem;color:var(--gm)">Package via @microsoft/generator-sharepoint, deploy via App Catalog.</p>
+    <h3>📐 OKR Scoring Reference — Google re:Work</h3>
+    <div class="okr-ref-grid">
+      <div class="okr-ref-item green">🟢 0.7–1.0 — On Track<br><span style="font-weight:400;font-size:.7rem">Strong execution</span></div>
+      <div class="okr-ref-item sweet">🎯 0.6–0.7 — Sweet Spot<br><span style="font-weight:400;font-size:.7rem">Ambitious + achievable</span></div>
+      <div class="okr-ref-item yellow">🟡 0.4–0.6 — Needs Attention<br><span style="font-weight:400;font-size:.7rem">Review blockers</span></div>
+      <div class="okr-ref-item gray">⚪ 0.0–0.3 — At Risk<br><span style="font-weight:400;font-size:.7rem">Intervention needed</span></div>
+    </div>
+    <p style="font-size:.75rem;color:var(--blue);font-weight:800;margin:.75rem 0 .3rem">Key Principles (Google OKR Playbook)</p>
+    <p>• Consistently scoring <strong>1.0 = goals not ambitious enough</strong> — raise the bar</p>
+    <p>• <strong>Committed OKRs</strong>: Must achieve 100% — realistic stretch targets</p>
+    <p>• <strong>Aspirational OKRs</strong>: Moonshots — 60–70% = success</p>
+    <p>• KRs must describe <strong>outcomes, not activities</strong></p>
+    <p>• OKRs ≠ KPIs — KPIs monitor health; OKRs drive change</p>
+    <p style="font-size:.74rem;color:var(--gray);margin-top:.75rem">Source: <a href="https://rework.withgoogle.com/intl/en/guides/set-goals-with-okrs" target="_blank" style="color:var(--teal-text)">Google re:Work OKR Guide</a> · Google OKR Playbook (WhatMatters.com)</p>
+    <p style="font-size:.74rem;color:var(--gray);margin-top:.5rem"><strong>SharePoint URL:</strong></p>
+    <code>https://cabinetpillarscorecards.github.io/rewire-scorecards/</code>
   </div>
 </div>
 
@@ -203,23 +319,34 @@ td[contenteditable=true]{outline:1px solid var(--gold);border-radius:3px;backgro
 </div>
 
 <script>
+/* ============================================================
+   SCORING: Google OKR Scale 0.0–1.0
+   Source: Google re:Work + OKR Playbook (WhatMatters.com)
+   Sweet spot: 0.6–0.7
+   Color: ≥0.7 teal · ≥0.4 gold · <0.4 gray
+   KR Types: 'committed' (must hit 100%) | 'aspirational' (60-70% = win)
+   ============================================================ */
+
 const API_BASE='';
 let PILLARS=[],DECISIONS=[],apiConnected=false,currentPillarId=null;
-let activeFilters={status:'all',conf:'all'};
+let activeFilters={status:'all',score:'all'};
+
+/* Activity words per Google OKR Playbook — KRs containing these may describe activities not outcomes */
+const ACTIVITY_WORDS=['consult','help','analyze','analyse','participate','support','assist','coordinate','facilitate','assess','review','explore','investigate','consider'];
 
 const SP=[
 {id:0,icon:'🔬',iconClass:'p1',num:'Pillar 1',name:'Triple & Rebalance',
  rewire:'Triple Research Funding $420M → >$1.2B · $500M Industry Trials · >$200M PCORI · $350M NIH',
  objective:'Build the operational infrastructure that makes enterprise-scale commercial research growth measurable and repeatable',
- sponsor:'Ebony Boulware',lead:'Adam Samson',pm:'Kelsey Shore',rag:'yellow',confidence:6,lastUpdated:'2026-06-02',
+ sponsor:'Ebony Boulware',lead:'Adam Samson',pm:'Kelsey Shore',rag:'yellow',lastUpdated:'2026-06-02',
  keyRisk:'Program onboarding, contracting bottlenecks, or delayed infrastructure activation may slow enterprise standardization and trial growth.',
  decision:'Reinforce organizational expectations that research programs align with NCCT-supported operational standards, shared services, and performance reporting frameworks.',
  krs:[
-  {n:'KR1',text:'Reduce median CTA turnaround time',done:'≤83 days across all sites',current:'104 days (FY25)',target:'≤83 days',conf:7,owner:'Adam Samson',risk:'CTA workflow adoption not yet universal'},
-  {n:'KR2',text:'Establish BD pipeline baseline',done:'Salesforce tracking live; qualified leads entering pipeline monthly',current:'Tracking established',target:'FY26 baseline by Q3',conf:6,owner:'Adam Samson',risk:'BD leadership activation pace'},
-  {n:'KR3',text:'Establish financial revenue capture baseline',done:'All sites reporting against standardized framework',current:'Framework implemented',target:'FY26 baseline by Q3',conf:5,owner:'Adam Samson',risk:'Reporting immaturity across regions'},
-  {n:'KR4',text:'Shared services onboarding coverage',done:'100% of target programs by Q4',current:'Framework active',target:'100% by Q4',conf:6,owner:'Adam Samson',risk:'Program-level resistance'},
-  {n:'KR5',text:'NIH + PCORI baseline established',done:'Baseline funding levels captured; tracking methodology defined',current:'Not yet tracked',target:'FY26 baseline by Q4',conf:4,owner:'TBD',risk:'No PM assigned — escalation needed'}],
+  {n:'KR1',text:'Reduce median CTA turnaround time',done:'≤83 days across all sites',current:'104 days (FY25)',target:'≤83 days',score:0.7,type:'committed',owner:'Adam Samson',risk:'CTA workflow adoption not yet universal',evidence:'Site-level CTA cycle time reports available in Salesforce'},
+  {n:'KR2',text:'Establish BD pipeline baseline',done:'Salesforce tracking live; qualified leads entering pipeline monthly',current:'Tracking established',target:'FY26 baseline by Q3',score:0.6,type:'committed',owner:'Adam Samson',risk:'BD leadership activation pace',evidence:'Salesforce pipeline dashboard — monthly report link'},
+  {n:'KR3',text:'Establish financial revenue capture baseline',done:'All sites reporting against standardized framework',current:'Framework implemented',target:'FY26 baseline by Q3',score:0.5,type:'committed',owner:'Adam Samson',risk:'Reporting immaturity across regions',evidence:'Finance reporting framework doc — published metrics available'},
+  {n:'KR4',text:'Shared services onboarding coverage',done:'100% of target programs by Q4',current:'Framework active',target:'100% by Q4',score:0.6,type:'committed',owner:'Adam Samson',risk:'Program-level resistance',evidence:'Onboarding tracker by site — available in shared drive'},
+  {n:'KR5',text:'NIH + PCORI baseline established',done:'Baseline funding levels captured; tracking methodology defined',current:'Not yet tracked',target:'FY26 baseline by Q4',score:0.4,type:'committed',owner:'TBD',risk:'No PM assigned — escalation needed',evidence:'⚠ No evidence available — PM not assigned'}],
  initiatives:[
   {text:'Salesforce pipeline tracking setup',kr:'KR2',owner:'BD Lead',status:'yellow',pm:'Kelsey Shore maintaining version + update log'},
   {text:'CTA workflow harmonization rollout',kr:'KR1',owner:'Adam Samson',status:'yellow',pm:'Kelsey Shore coordinating site updates'},
@@ -230,18 +357,19 @@ const SP=[
   {metric:'$500M Industry Clinical Trial Revenue',current:'N/A – Baseline Year',target:'$500M',pct:null},
   {metric:'>$200M PCORI Funding',current:'N/A – Baseline Year',target:'$200M',pct:null},
   {metric:'$350M NIH Funding',current:'N/A – Baseline Year',target:'$350M',pct:null}]},
+
 {id:1,icon:'🎓',iconClass:'p2',num:'Pillar 2',name:'Train & Retain',
  rewire:'Grow, Retain, Innovate — >3,000 Learners · >300 GME Programs · Train & Retain 40% of Learners',
  objective:'Establish the measurement infrastructure and governance model that enables enterprise-wide learner retention tracking and workforce alignment',
- sponsor:'Ebony Boulware',lead:'Terri Yates',pm:'Chris Blakley',rag:'yellow',confidence:5,lastUpdated:'2026-06-02',
+ sponsor:'Ebony Boulware',lead:'Terri Yates',pm:'Chris Blakley',rag:'yellow',lastUpdated:'2026-06-02',
  keyRisk:'Without standardized retention measurement, dashboard visibility, and placement tracking, the enterprise lacks the visibility needed to improve learner retention.',
  decision:'Confirm retention-measurement approach, dashboard expectations, and what groups are included in the Learners Count — SOM + GME Only, or SOM + Colleges of Health Sciences + GME.',
  krs:[
-  {n:'KR1',text:'GME retention dashboard live in CAPTURE',done:'Dashboard pulls from MedHub/New Innovation for 100% of programs',current:'CAPTURE partnership active',target:'Beta by end of 2027',conf:5,owner:'Tom Hansen',risk:'MedHub/New Innovation data integration'},
-  {n:'KR2',text:'Retention operationally defined enterprise-wide',done:'Single agreed-upon definition applied across UME and GME',current:'Not yet defined',target:'Definition confirmed by Cabinet Q3',conf:4,owner:'Terri Yates',risk:'Cabinet has not confirmed definition'},
-  {n:'KR3',text:'UME-to-Advocate GME placement baseline established',done:'CAPTURE shows WFUSM students joining Advocate GME by hospital + program',current:'Hospital-level matching exists',target:'Full program-level baseline Q4',conf:5,owner:'Alain Bertoni',risk:'NPI availability not confirmed'},
-  {n:'KR4',text:'Physician workforce needs assessment complete',done:'Specialty + geography workforce plan with recruitment priorities',current:'All-clinical-sites data available',target:'Plan complete Q4',conf:5,owner:'Tom Hansen',risk:'Scope not yet confirmed'},
-  {n:'KR5',text:'Governance team chartered and active',done:'Charter complete; team named; meeting series launched',current:'Initial discussion only',target:'Charter + first meeting Q3',conf:4,owner:'Tom Hansen + Terri Yates',risk:'Team composition not finalized'}],
+  {n:'KR1',text:'GME retention dashboard live in CAPTURE',done:'Dashboard pulls from MedHub/New Innovation for 100% of programs',current:'CAPTURE partnership active',target:'Beta by end of 2027',score:0.5,type:'aspirational',owner:'Tom Hansen',risk:'MedHub/New Innovation data integration',evidence:'CAPTURE partnership MOU — data integration spec pending'},
+  {n:'KR2',text:'Retention operationally defined enterprise-wide',done:'Single agreed-upon definition applied across UME and GME',current:'Not yet defined',target:'Definition confirmed by Cabinet Q3',score:0.4,type:'committed',owner:'Terri Yates',risk:'Cabinet has not confirmed definition',evidence:'⚠ No published definition — Cabinet alignment pending'},
+  {n:'KR3',text:'UME-to-Advocate GME placement baseline established',done:'CAPTURE shows WFUSM students joining Advocate GME by hospital + program',current:'Hospital-level matching exists',target:'Full program-level baseline Q4',score:0.5,type:'committed',owner:'Alain Bertoni',risk:'NPI availability not confirmed',evidence:'Hospital-level match data available in CAPTURE'},
+  {n:'KR4',text:'Physician workforce needs assessment complete',done:'Specialty + geography workforce plan with recruitment priorities',current:'All-clinical-sites data available',target:'Plan complete Q4',score:0.5,type:'committed',owner:'Tom Hansen',risk:'Scope not yet confirmed',evidence:'Clinical sites data export available — scope doc pending'},
+  {n:'KR5',text:'Governance team chartered and active',done:'Charter complete; team named; meeting series launched',current:'Initial discussion only',target:'Charter + first meeting Q3',score:0.4,type:'committed',owner:'Tom Hansen + Terri Yates',risk:'Team composition not finalized',evidence:'⚠ No charter document exists yet'}],
  initiatives:[
   {text:'CAPTURE GME dashboard build',kr:'KR1',owner:'Tom Hansen',status:'yellow',pm:'Chris Blakley coordinating with CAPTURE team'},
   {text:'Retention definition working session',kr:'KR2',owner:'Terri Yates',status:'red',pm:'Chris Blakley scheduling Cabinet alignment session'},
@@ -253,18 +381,19 @@ const SP=[
   {metric:'>300 GME Programs',current:'269',target:'>300',pct:'89.7%'},
   {metric:'Train & Retain 40% of Learners',current:'TBC',target:'40%',pct:null},
   {metric:'AI & Technology Innovation Across Programs',current:'TBC',target:'TBC',pct:null}]},
+
 {id:2,icon:'⚙️',iconClass:'p3',num:'Pillar 3 · UFO',name:'Unified Framework for Operations',
  rewire:'Establish a high-performing, data-driven academic operating environment — governance, financial transparency, scalable infrastructure',
  objective:'Activate governance, financial transparency, and scalable infrastructure to enable execution across all REWIRE 2030 pillars',
- sponsor:'Ebony Boulware',lead:"Chris O'Byrne",pm:'Claire Hess',rag:'yellow',confidence:5,lastUpdated:'2026-06-02',
+ sponsor:'Ebony Boulware',lead:"Chris O'Byrne",pm:'Claire Hess',rag:'yellow',lastUpdated:'2026-06-02',
  keyRisk:'If governance, reporting, or operating-model decisions stall, the enterprise may continue to experience avoidable execution friction across all pillars.',
  decision:'Confirm decision-rights model, intake launch expectations, N3–N8 operating-model approach, and sequencing for 2027 budget, CAPTURE deployment, and faculty-planning work.',
  krs:[
-  {n:'KR1',text:'Decision rights finalized and communicated',done:'Decision rights model approved; communicated to all Vice Deans',current:'TBC',target:'Q2 complete',conf:5,owner:'TBC',risk:'Alignment across Vice Deans'},
-  {n:'KR2',text:'Standardized intake workflow launched',done:'Requests through standardized intake; reduction in decision cycle time',current:'TBC',target:'Intake live Q2',conf:5,owner:'TBC',risk:'Change management'},
-  {n:'KR3',text:'All academic cost centers mapped to Vice Deans',done:'100% of cost centers mapped with regular monthly reporting',current:'TBC',target:'100% by Q2',conf:6,owner:'TBC',risk:'Financial data completeness'},
-  {n:'KR4',text:'2027 budget process launched',done:'Budget process initiated with forward-looking planning framework',current:'TBC',target:'Launch Q2',conf:6,owner:'TBC',risk:'Timeline compression'},
-  {n:'KR5',text:'N3–N8 operating model approach approved',done:'Operating model decision made; matrixed leader reporting launched',current:'TBC',target:'Approved Q2',conf:5,owner:'TBC',risk:'Organizational complexity'}],
+  {n:'KR1',text:'Decision rights finalized and communicated',done:'Decision rights model approved; communicated to all Vice Deans',current:'TBC',target:'Q2 complete',score:0.5,type:'committed',owner:'TBC',risk:'Alignment across Vice Deans',evidence:'TBC — model document not yet published'},
+  {n:'KR2',text:'Standardized intake workflow launched',done:'Requests through standardized intake; reduction in decision cycle time',current:'TBC',target:'Intake live Q2',score:0.5,type:'committed',owner:'TBC',risk:'Change management',evidence:'TBC — intake system not yet launched'},
+  {n:'KR3',text:'All academic cost centers mapped to Vice Deans',done:'100% of cost centers mapped with regular monthly reporting',current:'TBC',target:'100% by Q2',score:0.6,type:'committed',owner:'TBC',risk:'Financial data completeness',evidence:'Finance team has cost center list — mapping in progress'},
+  {n:'KR4',text:'2027 budget process launched',done:'Budget process initiated with forward-looking planning framework',current:'TBC',target:'Launch Q2',score:0.6,type:'committed',owner:'TBC',risk:'Timeline compression',evidence:'Budget calendar published — process doc in review'},
+  {n:'KR5',text:'N3–N8 operating model approach approved',done:'Operating model decision made; matrixed leader reporting launched',current:'TBC',target:'Approved Q2',score:0.5,type:'aspirational',owner:'TBC',risk:'Organizational complexity',evidence:'TBC — options analysis in progress'}],
  initiatives:[
   {text:'Decision rights model development',kr:'KR1',owner:'TBC',status:'yellow',pm:'Claire Hess tracking stakeholder alignment'},
   {text:'Intake workflow design + launch',kr:'KR2',owner:'TBC',status:'yellow',pm:'Claire Hess maintaining workflow documentation'},
@@ -275,18 +404,19 @@ const SP=[
   {metric:'100% of Academic Programs Analytics Driven',current:'TBC',target:'100%',pct:null},
   {metric:'Decision Cycle Time Reduction',current:'TBC',target:'TBC',pct:null},
   {metric:'Cost Centers Mapped to Vice Deans',current:'TBC',target:'100%',pct:null}]},
+
 {id:3,icon:'💡',iconClass:'p4',num:'Pillar 4',name:'Innovation',
  rewire:'Leverage Districts, Harness Partnerships, Translate — 10 Major Academic-Industry Partnerships · 50 Licensed Products',
  objective:'Launch the First-in-Human (FIH) Accelerator infrastructure and governance model to move innovations from discovery to early clinical testing',
- sponsor:'Ebony Boulware',lead:'Terry Hales',pm:'Maria Jessup',rag:'yellow',confidence:5,lastUpdated:'2026-06-02',
+ sponsor:'Ebony Boulware',lead:'Terry Hales',pm:'Maria Jessup',rag:'yellow',lastUpdated:'2026-06-02',
  keyRisk:'Without a credible asset inventory, coordinated governance, or sponsor alignment, the accelerator could remain conceptual rather than operational.',
  decision:'Confirm governance, investment priorities, and sponsorship model for the FIH Accelerator; validate baselines and targets once initial inventory is defined.',
  krs:[
-  {n:'KR1',text:'FIH Assets & Gaps exercise complete',done:'Ranked list of FIH-ready assets by stage and modality',current:'TBC',target:'Top opportunities with plans by Q2',conf:5,owner:'TBC',risk:'IP inventory does not exist in unified system'},
-  {n:'KR2',text:'Cross-organizational working group formed',done:'Task Force chartered; meeting cadence established; faculty engaged',current:'TBC',target:'Charter + first meeting Q2',conf:5,owner:'TBC',risk:'Cross-org coordination complexity'},
-  {n:'KR3',text:'Entrepreneurship training boot camp designed',done:'Curriculum drafted; partner identified; faculty interest captured',current:'TBC',target:'Boot camp launched by Q3',conf:4,owner:'TBC',risk:'Faculty engagement pace'},
-  {n:'KR4',text:'Annual IP inventory baseline established',done:'Baseline data captured for IP, implementation-ready products, and licensing agreements',current:'TBC',target:'Baseline complete by Q4',conf:4,owner:'TBC',risk:'No unified IP tracking system yet'},
-  {n:'KR5',text:'FIH Accelerator governance approved',done:'Named executive sponsor; project leads assigned; investment priorities confirmed',current:'TBC',target:'Governance confirmed Q2',conf:5,owner:'TBC',risk:'Sponsor alignment across organizations'}],
+  {n:'KR1',text:'FIH Assets & Gaps exercise complete',done:'Ranked list of FIH-ready assets by stage and modality',current:'TBC',target:'Top opportunities with plans by Q2',score:0.5,type:'committed',owner:'Cristina Furdui',risk:'IP inventory does not exist in unified system',evidence:'TBC — inventory exercise not yet started'},
+  {n:'KR2',text:'Cross-organizational working group formed',done:'Task Force chartered; meeting cadence established; faculty engaged',current:'TBC',target:'Charter + first meeting Q2',score:0.5,type:'committed',owner:'TBC',risk:'Cross-org coordination complexity',evidence:'TBC — charter document not yet drafted'},
+  {n:'KR3',text:'Entrepreneurship training boot camp launched',done:'Curriculum drafted; partner identified; faculty enrolled',current:'TBC',target:'Boot camp launched by Q3',score:0.4,type:'aspirational',owner:'Erich Huang',risk:'Faculty engagement pace',evidence:'TBC — curriculum outline pending'},
+  {n:'KR4',text:'Annual IP inventory baseline established',done:'Baseline data captured for IP, implementation-ready products, and licensing agreements',current:'TBC',target:'Baseline complete by Q4',score:0.4,type:'committed',owner:'David Zhao',risk:'No unified IP tracking system yet',evidence:'⚠ No IP tracking system exists — must be created'},
+  {n:'KR5',text:'FIH Accelerator governance approved',done:'Named executive sponsor; project leads assigned; investment priorities confirmed',current:'TBC',target:'Governance confirmed Q2',score:0.5,type:'committed',owner:'Terry Hales',risk:'Sponsor alignment across organizations',evidence:'TBC — governance model in early design'}],
  initiatives:[
   {text:'FIH asset inventory exercise',kr:'KR1',owner:'Cristina Furdui',status:'yellow',pm:'Maria Jessup tracking inventory completion'},
   {text:'Working group charter development',kr:'KR2',owner:'Terry Hales',status:'yellow',pm:'Maria Jessup preparing charter template'},
@@ -299,22 +429,51 @@ const SP=[
   {metric:'FIH-Ready Assets Identified',current:'TBC',target:'TBC',pct:null}]}
 ];
 
-function confHex(c){return c>=7?'#6BA539':c>=4?'#FDC314':'#9B1B30'}
-function buildRing(c,sz=58,sw=5){
-  const r=(sz-sw*2)/2,ci=2*Math.PI*r,off=ci-(c/10)*ci;
+/* ── SCORING FUNCTIONS — Google OKR Scale 0.0–1.0 ── */
+function scoreHex(s){
+  if(s>=0.7)return '#008C95';   // teal = on track
+  if(s>=0.4)return '#9E7E38';   // gold = caution
+  return '#53565A';              // gray = at risk
+}
+
+function getOKRHealth(avg){
+  if(avg>0.9)return {label:'⚠ May Not Be Ambitious Enough',cls:'warn-high',color:var_gold,tip:'Consistently scoring >0.9 suggests goals may not be set ambitiously enough (Google OKR Playbook). Consider raising the bar.'};
+  if(avg>=0.7)return {label:'✅ On Track',cls:'on-track',color:'#008C95',tip:'Strong execution. Verify goals remain ambitious enough — sweet spot is 0.6–0.7.'};
+  if(avg>=0.6)return {label:'🎯 Sweet Spot',cls:'sweet-spot',color:'#008C95',tip:'0.6–0.7 is Google\'s target zone — goals are ambitious yet progress is real. This is the ideal OKR state.'};
+  if(avg>=0.4)return {label:'⚠ Needs Attention',cls:'needs-attn',color:'#9E7E38',tip:'Progress exists but below sweet spot. Review blockers and assess whether resources need reallocation.'};
+  return {label:'🔴 At Risk',cls:'at-risk',color:'#53565A',tip:'Significant intervention needed. Consider whether OKRs need to be rescoped or escalated.'};
+}
+
+// Workaround for CSS var in JS
+const var_gold='#9E7E38';
+
+function isSweetSpot(avg){return avg>=0.6&&avg<=0.7}
+function isSandbagging(avg){return avg>0.9}
+
+function detectActivityKRs(krs){
+  return krs.filter(k=>{
+    const lower=k.text.toLowerCase()+' '+k.done.toLowerCase();
+    return ACTIVITY_WORDS.some(w=>lower.includes(w));
+  });
+}
+
+function buildRing(s,sz=58,sw=5){
+  const r=(sz-sw*2)/2,ci=2*Math.PI*r,off=ci-s*ci;
   return `<svg class="ring-svg" width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}">
-    <circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="#0A2236" stroke-width="${sw}"/>
-    <circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="${confHex(c)}" stroke-width="${sw}"
+    <circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="#E6E7E8" stroke-width="${sw}"/>
+    <circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="${scoreHex(s)}" stroke-width="${sw}"
       stroke-linecap="round" stroke-dasharray="${ci}" stroke-dashoffset="${off}"/></svg>`;
 }
+
 function showToast(msg,type='gold'){
-  const cols={gold:'#9E7E38',green:'#6BA539',orange:'#C17F00',red:'#9B1B30',teal:'#008C95'};
+  const cols={gold:'#9E7E38',green:'#008C95',orange:'#8C6D2C',red:'#53565A',teal:'#007078'};
   const t=document.createElement('div');
   t.className='toast';t.textContent=msg;t.style.background=cols[type]||cols.gold;
   document.getElementById('toastContainer').appendChild(t);
   setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .5s'},2500);
   setTimeout(()=>t.remove(),3100);
 }
+
 async function init(){
   try{
     const r=await fetch(API_BASE+'/api/data');
@@ -329,11 +488,12 @@ async function init(){
     try{DECISIONS=JSON.parse(localStorage.getItem('r30_dec')||'[]')}catch{DECISIONS=[];}
     document.getElementById('connDot').className='conn-dot off';
     document.getElementById('connLbl').textContent='Offline Mode';
-    showToast('Running in offline mode ⚠','orange');
+    showToast('Running in offline mode','orange');
   }
   document.getElementById('loading').style.display='none';
   renderDashboard();
 }
+
 function buildAlerts(){
   const items=[];
   PILLARS.forEach(p=>p.initiatives.forEach(i=>{
@@ -342,17 +502,22 @@ function buildAlerts(){
   if(!items.length)return '';
   return `<div class="alert-box"><div class="alert-title">⚠ Escalation Alerts — Immediate Attention Required</div>${items.join('')}</div>`;
 }
+
 function buildCard(p){
-  const avg=p.krs.reduce((a,k)=>a+k.conf,0)/p.krs.length;
+  const avg=p.krs.reduce((a,k)=>a+k.score,0)/p.krs.length;
   const rc=p.rag==='green'?'g':p.rag==='red'?'r':'y';
+  const health=getOKRHealth(avg);
+  const actKRs=detectActivityKRs(p.krs);
   return `<div class="pcard" id="card-${p.id}" onclick="showPillar(${p.id})"
-    data-rag="${p.rag}" data-conf="${avg.toFixed(1)}"
+    data-rag="${p.rag}" data-score="${avg.toFixed(2)}"
     data-search="${(p.name+p.objective+p.lead+p.pm+p.keyRisk).toLowerCase()}">
     <div class="card-top">
       <div class="cicon ${p.iconClass}">${p.icon}</div>
       <div class="badges">
         <span class="badge badge-${rc}">${p.rag.toUpperCase()}</span>
         ${p.decision?'<span class="badge badge-dec">⚡ DECISION NEEDED</span>':''}
+        ${isSweetSpot(avg)?'<span class="badge badge-sweet">🎯 SWEET SPOT</span>':''}
+        ${isSandbagging(avg)?'<span class="badge badge-sandbag">⚠ RAISE THE BAR</span>':''}
       </div>
     </div>
     <div class="cnum">${p.num}</div>
@@ -361,10 +526,11 @@ function buildCard(p){
     <div class="cobj">"${p.objective}"</div>
     <div class="conf-row">
       <div class="ring-wrap" style="width:58px;height:58px">${buildRing(avg)}
-        <div class="ring-text" style="color:${confHex(avg)}">${avg.toFixed(1)}</div></div>
+        <div class="ring-text" style="color:${scoreHex(avg)}">${avg.toFixed(2)}</div></div>
       <div class="conf-meta">
-        <div class="conf-lbl">Avg Confidence (0–10)</div>
-        <div class="conf-bg"><div class="conf-fill" style="width:${avg*10}%;background:${confHex(avg)}"></div></div>
+        <div class="conf-lbl">OKR Score (0.0–1.0) · ${health.label}</div>
+        <div class="conf-bg"><div class="conf-fill" style="width:${avg*100}%;background:${scoreHex(avg)}"></div></div>
+        ${actKRs.length?`<div style="font-size:.65rem;color:#8C6D2C;margin-top:4px;font-weight:700">⚠ ${actKRs.length} KR(s) may describe activities vs outcomes</div>`:''}
       </div>
     </div>
     <div class="cmeta">
@@ -373,39 +539,55 @@ function buildCard(p){
     </div>
   </div>`;
 }
+
 function renderDashboard(){
   document.getElementById('dashboard-view').innerHTML=buildAlerts()+
-  `<div class="filter-bar">
+  `<div class="okr-legend">
+    <span style="font-size:.72rem;font-weight:800;color:var(--blue);margin-right:.5rem">OKR Score:</span>
+    <span class="legend-item lg"><span class="legend-dot" style="background:#008C95"></span>0.7–1.0 On Track</span>
+    <span class="legend-item ls"><span class="legend-dot" style="background:#008C95"></span>0.6–0.7 🎯 Sweet Spot</span>
+    <span class="legend-item ly"><span class="legend-dot" style="background:#9E7E38"></span>0.4–0.6 Needs Attention</span>
+    <span class="legend-item lr"><span class="legend-dot" style="background:#53565A"></span>0.0–0.3 At Risk</span>
+    <span style="font-size:.65rem;color:var(--text-sub);margin-left:auto;font-style:italic">Source: Google re:Work OKR Guide</span>
+  </div>
+  <div class="filter-bar">
     <input class="search" id="searchBox" placeholder="🔍  Search scorecards, KRs, owners…" oninput="filterCards()">
     <span class="filter-lbl">Status:</span>
     <button class="fb active" onclick="setFilter('status','all',this)">All</button>
-    <button class="fb" onclick="setFilter('status','yellow',this)" style="color:var(--yel)">● Yellow</button>
-    <button class="fb" onclick="setFilter('status','red',this)" style="color:#C94060">● Red</button>
-    <button class="fb" onclick="setFilter('status','green',this)" style="color:var(--grn)">● Green</button>
-    <span class="filter-lbl">Confidence:</span>
-    <button class="fb active" onclick="setFilter('conf','all',this)">All</button>
-    <button class="fb" onclick="setFilter('conf','high',this)">High ≥7</button>
-    <button class="fb" onclick="setFilter('conf','med',this)">Med 4–6</button>
-    <button class="fb" onclick="setFilter('conf','low',this)">Low ≤3</button>
+    <button class="fb" onclick="setFilter('status','yellow',this)" style="color:#8C6D2C">● Yellow</button>
+    <button class="fb" onclick="setFilter('status','red',this)" style="color:#53565A">● At Risk</button>
+    <button class="fb" onclick="setFilter('status','green',this)" style="color:#007078">● On Track</button>
+    <span class="filter-lbl">OKR Score:</span>
+    <button class="fb active" onclick="setFilter('score','all',this)">All</button>
+    <button class="fb" onclick="setFilter('score','high',this)">≥0.7</button>
+    <button class="fb" onclick="setFilter('score','sweet',this)">🎯 Sweet</button>
+    <button class="fb" onclick="setFilter('score','low',this)"><0.4</button>
   </div>
   <div class="grid-2">${PILLARS.map(buildCard).join('')}</div>`;
 }
+
 function filterCards(){
   const q=(document.getElementById('searchBox')||{}).value||'';
   document.querySelectorAll('.pcard').forEach(c=>{
     const ms=!q||c.dataset.search.includes(q.toLowerCase())||c.textContent.toLowerCase().includes(q.toLowerCase());
     const mr=activeFilters.status==='all'||c.dataset.rag===activeFilters.status;
-    const cf=parseFloat(c.dataset.conf);
-    const mc=activeFilters.conf==='all'||(activeFilters.conf==='high'&&cf>=7)||(activeFilters.conf==='med'&&cf>=4&&cf<7)||(activeFilters.conf==='low'&&cf<4);
-    c.classList.toggle('hidden',!(ms&&mr&&mc));
+    const sc=parseFloat(c.dataset.score);
+    let msc=true;
+    if(activeFilters.score==='high')msc=sc>=0.7;
+    else if(activeFilters.score==='sweet')msc=sc>=0.6&&sc<=0.7;
+    else if(activeFilters.score==='low')msc=sc<0.4;
+    c.classList.toggle('hidden',!(ms&&mr&&msc));
   });
 }
+
 function setFilter(t,v,btn){
   activeFilters[t]=v;
   btn.closest('.filter-bar').querySelectorAll(`.fb[onclick*="'${t}'"]`).forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');filterCards();
 }
+
 function navActive(i){document.querySelectorAll('.np').forEach((p,j)=>p.classList.toggle('active',j===i))}
+
 function showDashboard(){
   document.getElementById('dashboard-view').style.display='';
   document.getElementById('detail-view').style.display='none';
@@ -413,6 +595,7 @@ function showDashboard(){
   document.getElementById('saveBtn').style.display='none';
   navActive(0);
 }
+
 function renderPillarDecisions(pid){
   const list=DECISIONS.filter(d=>d.pillarId===pid);
   if(!list.length)return '<div class="dec-empty">No decisions logged yet for this pillar.</div>';
@@ -425,38 +608,58 @@ function renderPillarDecisions(pid){
     <button class="btn-del" onclick="deleteDecision('${d.id}',${pid})">🗑</button>
   </div>`).join('');
 }
+
 function buildDetail(p){
-  const avg=p.krs.reduce((a,k)=>a+k.conf,0)/p.krs.length;
+  const avg=p.krs.reduce((a,k)=>a+k.score,0)/p.krs.length;
   const rc=p.rag==='green'?'g':p.rag==='red'?'r':'y';
+  const health=getOKRHealth(avg);
+  const actKRs=detectActivityKRs(p.krs);
+  const aspirationalKRs=p.krs.filter(k=>k.type==='aspirational');
+
   const krRows=p.krs.map(k=>`<tr>
     <td><span class="kr-n">${k.n}</span></td>
+    <td><span class="kr-${k.type}">${k.type==='aspirational'?'🚀 Aspirational':'✅ Committed'}</span></td>
     <td class="editable-cell">${k.text}</td>
-    <td style="font-size:.75rem">${k.done}</td>
+    <td style="font-size:.75rem;color:#53565A">${k.done}</td>
     <td class="editable-cell">${k.current}</td>
-    <td style="color:var(--gl);font-weight:700">${k.target}</td>
-    <td><strong style="color:${confHex(k.conf)}">${k.conf}</strong>
-      <div class="mini-bar-wrap"><div class="mini-fill" style="width:${k.conf*10}%;background:${confHex(k.conf)}"></div></div></td>
+    <td style="color:#8C6D2C;font-weight:700">${k.target}</td>
+    <td>
+      <span class="score-val" style="color:${scoreHex(k.score)}">${k.score.toFixed(1)}</span>
+      ${isSweetSpot(k.score)?'<span class="score-sweet">🎯</span>':''}
+      <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${k.score*100}%;background:${scoreHex(k.score)}"></div></div>
+    </td>
     <td>${k.owner}</td>
-    <td style="font-size:.75rem;color:${k.risk.includes('No PM')||k.risk.includes('escalation')?'#C94060':'var(--gm)'}">${k.risk}</td>
+    <td style="font-size:.74rem;color:${k.risk.includes('No PM')||k.risk.includes('escalation')?'#53565A':'#888'}">${k.risk}</td>
+    <td style="font-size:.74rem;color:${k.evidence.includes('⚠')?'#8C6D2C':'#53565A'}">${k.evidence}</td>
   </tr>`).join('');
+
   const initRows=p.initiatives.map(i=>`<tr>
     <td class="editable-cell">${i.text}</td>
     <td><span class="kr-lnk">${i.kr}</span></td>
     <td>${i.owner}</td>
-    <td><span class="cdot ${i.status}"></span>${i.status.charAt(0).toUpperCase()+i.status.slice(1)}</td>
-    <td class="editable-cell" style="font-size:.75rem">${i.pm}</td>
+    <td><span style="width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px;background:${i.status==='green'?'#008C95':i.status==='red'?'#53565A':'#9E7E38'}"></span>${i.status.charAt(0).toUpperCase()+i.status.slice(1)}</td>
+    <td class="editable-cell" style="font-size:.74rem;color:#53565A">${i.pm}</td>
   </tr>`).join('');
+
   const kpiCards=p.kpis.map(k=>`<div class="kpi-card">
     <div class="kpi-m">${k.metric}</div>
     <div class="kpi-c">${k.current}</div>
     <div class="kpi-t">Target: ${k.target}</div>
-    ${k.pct?`<div class="pb-wrap"><div class="pb-fill" style="width:${k.pct}"></div></div><div style="font-size:.68rem;color:var(--gm);margin-top:3px;font-weight:600">${k.pct} to target</div>`
-    :'<div style="font-size:.68rem;color:var(--yel);margin-top:5px;font-weight:700">Baseline Year</div>'}
+    ${k.pct?`<div class="pb-wrap"><div class="pb-fill" style="width:${k.pct}"></div></div><div style="font-size:.68rem;color:#53565A;margin-top:3px;font-weight:600">${k.pct} to target</div>`
+    :'<div style="font-size:.68rem;color:#8C6D2C;margin-top:5px;font-weight:700">Baseline Year</div>'}
   </div>`).join('');
-  return `<div class="dheader">
+
+  const antipatterns=[];
+  if(isSandbagging(avg))antipatterns.push('⚠ Avg OKR score >0.9 — goals may not be ambitious enough (Google OKR Playbook: consistently hitting 1.0 = raise the bar)');
+  if(actKRs.length)antipatterns.push(`⚠ ${actKRs.map(k=>k.n).join(', ')} may describe activities vs outcomes — KRs should describe end-state impact, not tasks`);
+  if(aspirationalKRs.length)antipatterns.push(`ℹ ${aspirationalKRs.map(k=>k.n).join(', ')} marked Aspirational — scoring 0.6–0.7 on these is a win, not a failure`);
+
+  return `
+  ${antipatterns.length?`<div class="antipatt-box"><div class="antipatt-title">📐 OKR Quality Check (Google Playbook)</div>${antipatterns.map(a=>`<div class="antipatt-item">${a}</div>`).join('')}</div>`:''}
+  <div class="dheader">
     <div class="dh-top">
       <div>
-        <div style="font-size:.7rem;color:var(--gm);margin-bottom:3px;font-weight:700;text-transform:uppercase;letter-spacing:.5px">${p.num}</div>
+        <div style="font-size:.7rem;color:#53565A;margin-bottom:3px;font-weight:700;text-transform:uppercase;letter-spacing:.5px">${p.num}</div>
         <div class="dname">${p.icon} ${p.name}</div>
         <div class="drewire">${p.rewire}</div>
       </div>
@@ -464,11 +667,19 @@ function buildDetail(p){
         <span class="badge badge-${rc}" style="font-size:.8rem;padding:5px 14px">${p.rag.toUpperCase()}</span>
         <div style="display:flex;align-items:center;gap:9px">
           <div class="ring-wrap" style="width:52px;height:52px">${buildRing(avg,52,5)}
-            <div class="ring-text" style="color:${confHex(avg)};font-size:.82rem">${avg.toFixed(1)}</div></div>
-          <div><div style="font-size:.62rem;color:var(--gm);font-weight:700;text-transform:uppercase;letter-spacing:.4px">Avg Confidence</div>
-            <div style="font-weight:900;color:${confHex(avg)};font-size:1.1rem">${avg.toFixed(1)} / 10</div></div>
+            <div class="ring-text" style="color:${scoreHex(avg)};font-size:.82rem">${avg.toFixed(2)}</div></div>
+          <div>
+            <div style="font-size:.62rem;color:#53565A;font-weight:700;text-transform:uppercase;letter-spacing:.4px">OKR Score (0.0–1.0)</div>
+            <div style="font-weight:900;color:${scoreHex(avg)};font-size:1.1rem">${avg.toFixed(2)} / 1.0</div>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="okr-health-bar ${health.cls}">
+      <span class="health-label" style="color:${health.color}">${health.label}</span>
+      ${isSweetSpot(avg)?'<span class="sweet-spot-zone">0.6–0.7 TARGET ZONE</span>':''}
+      <span class="health-score" style="color:${health.color}">${avg.toFixed(2)}</span>
+      <div class="health-tip">${health.tip}</div>
     </div>
     <div class="dmeta">
       <div><div class="ml">Goal Sponsor</div><div class="mv">${p.sponsor}</div></div>
@@ -476,33 +687,40 @@ function buildDetail(p){
       <div><div class="ml">PM Support</div><div class="mv">${p.pm}</div></div>
       <div><div class="ml">Last Updated</div><div class="mv" id="luDate">${p.lastUpdated}</div></div>
     </div>
-    <div class="risk-box"><div class="risk-lbl">⚠ Key Risk</div><div style="font-size:.8rem;line-height:1.5">${p.keyRisk}</div></div>
-    ${p.decision?`<div class="dec-need-box"><div class="dec-need-lbl">⚡ Decision Needed</div><div style="font-size:.8rem;line-height:1.5">${p.decision}</div></div>`:''}
+    <div class="risk-box"><div class="risk-lbl">⚠ Key Risk</div><div class="box-txt">${p.keyRisk}</div></div>
+    ${p.decision?`<div class="dec-need-box"><div class="dec-need-lbl">⚡ Decision Needed</div><div class="box-txt">${p.decision}</div></div>`:''}
   </div>
   <div class="obj-box"><div class="obj-lbl">Objective — This Cycle</div><div class="obj-txt">${p.objective}</div></div>
   <div class="sec-hdr">
-    <div class="sec-title">Key Results</div><span class="sec-tag">OKR Layer — Outcome Ownership</span>
+    <div class="sec-title">Key Results</div>
+    <span class="sec-tag">OKR Layer — Outcomes, Not Activities</span>
+    <span class="sec-tag-teal">${p.krs.filter(k=>k.type==='aspirational').length} Aspirational · ${p.krs.filter(k=>k.type==='committed').length} Committed</span>
     <span class="sec-desc">Steering Team owns content</span>
-    <button class="btn-sm" onclick="toggleEditMode(this,${p.id})">✏ Edit Mode</button>
+    <button class="btn-sm" style="background:var(--gold);border-color:var(--gold)" onclick="toggleEditMode(this,${p.id})">✏ Edit Mode</button>
   </div>
   <div class="table-wrap"><table>
-    <thead><tr><th>#</th><th>Key Result</th><th>Definition of Done</th><th>Current Value</th><th>Target</th><th>Confidence</th><th>Owner</th><th>Blocking Risk</th></tr></thead>
+    <thead><tr><th>#</th><th>Type</th><th>Key Result</th><th>Definition of Done</th><th>Current</th><th>Target</th><th>Score</th><th>Owner</th><th>Blocking Risk</th><th>Evidence of Completion</th></tr></thead>
     <tbody>${krRows}</tbody></table></div>
   <div class="sec-hdr">
-    <div class="sec-title">Initiatives</div><span class="sec-tag">PM Layer — Execution Mechanics</span>
+    <div class="sec-title">Initiatives</div>
+    <span class="sec-tag">PM Layer — Execution Mechanics</span>
     <span class="sec-desc">${p.pm} owns updates</span>
   </div>
   <div class="table-wrap"><table>
     <thead><tr><th>Initiative</th><th>Linked KR</th><th>Owner</th><th>Status</th><th>PM Note</th></tr></thead>
     <tbody>${initRows}</tbody></table></div>
-  <div class="sec-hdr"><div class="sec-title">REWIRE 2030 KPI Tracker</div><span class="sec-tag">Long-Range Anchor</span></div>
+  <div class="sec-hdr">
+    <div class="sec-title">Long-Range KPIs</div>
+    <span class="sec-tag-teal">Health Metrics — Separate from OKRs</span>
+    <span class="sec-desc" style="font-style:italic">KPIs monitor ongoing health · OKRs drive change</span>
+  </div>
   <div class="kpi-grid">${kpiCards}</div>
   <div class="dec-section">
-    <div class="dec-sec-hdr">📋 Decisions Made Log</div>
+    <div class="dec-sec-hdr">📋 Decisions Made Log — OKR Review Record</div>
     <div class="dec-form">
       <textarea id="decText-${p.id}" placeholder="Enter decision text…"></textarea>
       <div class="dec-form-row">
-        <label style="font-size:.75rem;color:var(--gm);white-space:nowrap;font-weight:700">Made by:</label>
+        <label style="font-size:.75rem;color:#53565A;white-space:nowrap;font-weight:700">Made by:</label>
         <input class="dec-input" id="decBy-${p.id}" value="Cabinet" placeholder="Made by…">
         <select class="dec-select" id="decKR-${p.id}">
           <option value="N/A">N/A</option><option>KR1</option><option>KR2</option><option>KR3</option><option>KR4</option><option>KR5</option>
@@ -513,6 +731,7 @@ function buildDetail(p){
     <div id="decList-${p.id}">${renderPillarDecisions(p.id)}</div>
   </div>`;
 }
+
 function showPillar(id){
   currentPillarId=id;
   const dv=document.getElementById('detail-view');
@@ -524,6 +743,7 @@ function showPillar(id){
   navActive(id+1);
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
 function toggleEditMode(btn,pid){
   const editing=btn.textContent.includes('Edit');
   btn.textContent=editing?'✅ Done Editing':'✏ Edit Mode';
@@ -532,6 +752,7 @@ function toggleEditMode(btn,pid){
   sb.style.display=editing?'block':'none';
   sb.onclick=()=>saveChanges(pid);
 }
+
 async function saveChanges(pid){
   const p=PILLARS.find(x=>x.id===pid);if(!p)return;
   const cells=[...document.querySelectorAll('#detail-view .editable-cell')];
@@ -543,10 +764,11 @@ async function saveChanges(pid){
   if(apiConnected){
     try{await fetch(API_BASE+'/api/pillars/'+pid,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});showToast('Changes saved ✓','green');}
     catch{showToast('Save failed','red');}
-  }else{try{localStorage.setItem('r30_pillars',JSON.stringify(PILLARS));}catch{}showToast('Saved locally ⚠','orange');}
+  }else{try{localStorage.setItem('r30_pillars',JSON.stringify(PILLARS));}catch{}showToast('Saved locally','orange');}
   document.getElementById('saveBtn').style.display='none';
   document.querySelectorAll('#detail-view .editable-cell').forEach(c=>c.contentEditable='false');
 }
+
 async function logDecision(pid){
   const txt=(document.getElementById('decText-'+pid)||{}).value||'';
   if(!txt.trim()){showToast('Enter decision text','red');return;}
@@ -564,6 +786,7 @@ async function logDecision(pid){
   document.getElementById('decList-'+pid).innerHTML=renderPillarDecisions(pid);
   showToast('Decision logged ✓','teal');
 }
+
 async function deleteDecision(did,pid){
   if(!confirm('Delete this decision?'))return;
   if(apiConnected){try{await fetch(API_BASE+'/api/decisions/'+did,{method:'DELETE'});}catch{}}
@@ -571,15 +794,16 @@ async function deleteDecision(did,pid){
   try{localStorage.setItem('r30_dec',JSON.stringify(DECISIONS));}catch{}
   const dl=document.getElementById('decList-'+pid);
   if(dl)dl.innerHTML=renderPillarDecisions(pid);else showDecisions();
-  showToast('Decision removed','red');
+  showToast('Decision removed','gold');
 }
+
 function showDecisions(){
   document.getElementById('dashboard-view').style.display='none';
   document.getElementById('detail-view').style.display='none';
   document.getElementById('saveBtn').style.display='none';
   const ptC=['pt0','pt1','pt2','pt3'];
   const rows=DECISIONS.map(d=>`<tr>
-    <td style="white-space:nowrap">${d.dateDisplay||d.timestamp?.slice(0,10)||'—'}</td>
+    <td style="white-space:nowrap;color:#53565A">${d.dateDisplay||d.timestamp?.slice(0,10)||'—'}</td>
     <td><span class="pillar-tag ${ptC[d.pillarId]||'pt0'}">${d.pillarName||'—'}</span></td>
     <td>${d.decision}</td>
     <td>${d.madeBy||'Cabinet'}</td>
@@ -587,15 +811,16 @@ function showDecisions(){
     <td><button class="btn-del" onclick="deleteDecision('${d.id}',${d.pillarId||0})">🗑</button></td>
   </tr>`).join('');
   document.getElementById('decisions-view').innerHTML=
-    `<div class="gdec-title">📋 All Cabinet Decisions</div>
+    `<div class="gdec-title">📋 All Cabinet Decisions — OKR Review Log</div>
     <div class="gdec-sub">${DECISIONS.length} decision${DECISIONS.length!==1?'s':''} logged${apiConnected?' · synced to server':' · offline / localStorage'}</div>
     ${DECISIONS.length?`<div class="table-wrap"><table>
       <thead><tr><th>Date</th><th>Pillar</th><th>Decision</th><th>Made By</th><th>Linked KR</th><th>Delete</th></tr></thead>
       <tbody>${rows}</tbody></table></div>`
-    :'<div style="color:var(--gm);font-size:.9rem;padding:2rem 0;font-weight:600">No decisions logged yet. Open a pillar and use the Decisions Made Log.</div>'}`;
+    :'<div style="color:#53565A;font-size:.9rem;padding:2rem 0;font-weight:600">No decisions logged yet. Open a pillar and use the Decisions Made Log.</div>'}`;
   document.getElementById('decisions-view').style.display='';
   navActive(6);
 }
+
 document.addEventListener('keydown',e=>{
   if(document.getElementById('detail-view').style.display==='none')return;
   if(e.key==='ArrowRight'&&currentPillarId<3)showPillar(currentPillarId+1);
