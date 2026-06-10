@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>REWIRE 2030 Scorecards | WFUSM Academic Cabinet</title>
+<title>Steering Team Scorecards | WFUSM Academic Cabinet</title>
 <style>
 /* ============================================================
-   REWIRE 2030 — CABINET SCORECARDS
+   OKR Scorecards — CABINET SCORECARDS
    Plain-language version for Cabinet (MD/PhD audience)
    Scores: 0–10 display · Target zone: 6–7
    Grant analogy: hitting 70% of ambitious aims = excellent
@@ -256,6 +256,11 @@ td[contenteditable=true]{outline:2px solid var(--gold);border-radius:3px;backgro
   body{background:#fff}
   .dheader,.pcard,.tw,.obj-box,.dec-section,.kpi-card,.risk-box{border:1px solid #ccc;break-inside:avoid}
 }
+
+/* OKR additions */
+.btn-nav.active-edit{outline:2px solid var(--gl);background:rgba(253,195,20,.15)}
+.lock-badge{font-size:.68rem;font-weight:800;color:var(--gl);display:none;white-space:nowrap}
+.lock-badge.visible{display:block}
 </style>
 </head>
 <body>
@@ -264,31 +269,28 @@ td[contenteditable=true]{outline:2px solid var(--gold);border-radius:3px;backgro
 
 <div class="loading" id="loading">
   <div class="spinner"></div>
-  <p>Loading REWIRE 2030 Scorecards…</p>
+  <p>Loading Scorecards…</p>
 </div>
 
 <nav class="nav">
   <div class="nav-brand">
-    <div class="nav-logo">R30</div>
+    <div class="nav-logo">WF</div>
     <div>
-      <div class="nav-title">REWIRE 2030 SCORECARDS</div>
+      <div class="nav-title">STEERING TEAM SCORECARDS</div>
       <div class="nav-sub">WFUSM Academic Cabinet · FY2026</div>
     </div>
   </div>
   <div class="nav-pills">
     <button class="np active" onclick="showDashboard()">All Pillars</button>
-    <button class="np" onclick="showPillar(0)">Triple &amp; Rebalance</button>
-    <button class="np" onclick="showPillar(1)">Train &amp; Retain</button>
-    <button class="np" onclick="showPillar(2)">Operations</button>
-    <button class="np" onclick="showPillar(3)">Innovation</button>
+    <button class="np" onclick="showTeam(0)">Research &amp; Innovation</button>
+    <button class="np" onclick="showTeam(1)">Train &amp; Retain</button>
+    <button class="np" onclick="showTeam(2)">Operations</button>
+    <button class="np" onclick="showTeam(3)">Innovation</button>
     <button class="np" onclick="showDecisions()">📋 Decisions</button>
   </div>
-  <div class="nav-right">
-    <div style="display:flex;align-items:center;gap:5px">
-      <div class="conn-dot" id="connDot"></div>
-      <span class="conn-lbl" id="connLbl">Loading…</span>
-    </div>
-    <button class="btn-nav" onclick="window.print()">⬇ Print</button>
+  <div class="nav-right"><div class="lock-badge" id="lockIndicator">🔒 LOCKED &mdash; Cabinet View</div>
+    
+    <button class="btn-nav" id="editModeBtn" onclick="toggleEditMode()">&#9998; Edit Mode: OFF</button> <button class="btn-nav" id="lockBtn" onclick="toggleLock()">Lock for Cabinet</button> <button class="btn-nav" onclick="window.print()">⬇ Print</button>
   </div>
 </nav>
 
@@ -296,7 +298,7 @@ td[contenteditable=true]{outline:2px solid var(--gold);border-radius:3px;backgro
   <div class="explainer-text">
     <strong>How to read these scores — the grant analogy:</strong>
     Think of each pillar like a grant application with ambitious aims.
-    <strong>Hitting 70% of your milestones is excellent progress</strong> — that is why <strong>a score of 6–7 out of 10 is our target zone</strong>, not a sign of falling short.
+    <strong>Hitting 70% of your milestones is excellent progress</strong> — that is why <strong>a confidence of 60–70% is our target zone</strong>, not a sign of falling short.
     We set bold goals on purpose. Scoring 10 every time would mean the goals were not ambitious enough.
     Hover over any <strong>ℹ</strong> or column header for plain-language explanations.
   </div>
@@ -332,8 +334,8 @@ let PILLARS = [], DECISIONS = [], currentPillarId = null, activeFilter = 'all';
 
 const DATA = [
   {
-    id: 0, icon: '🔬', iconClass: 'p1', num: 'Pillar 1',
-    name: 'Triple &amp; Rebalance Research',
+    id: 0, icon: '🔬', iconClass: 'p1', num: 'Steering Team 1',
+    name: 'Research &amp; Innovation Research',
     rewire: 'Grow research funding from $420M → $1.2B+ · $500M industry trials · $200M+ PCORI · $350M NIH',
     objective: 'Build the operational systems that make large-scale, multi-site commercial research growth measurable and repeatable across the enterprise.',
     sponsor: 'Dean Boulware', lead: 'Adam Samson', pm: 'Kelsey Shore', lastUpdated: '2026-06-02',
@@ -360,8 +362,8 @@ const DATA = [
     ]
   },
   {
-    id: 1, icon: '🎓', iconClass: 'p2', num: 'Pillar 2',
-    name: 'Train &amp; Retain Talent',
+    id: 1, icon: '🎓', iconClass: 'p2', num: 'Steering Team 2',
+    name: 'Education &amp; Workforce',
     rewire: 'Grow to 3,000+ learners · 300+ GME programs · Retain 40% of graduates within the Advocate Health system',
     objective: 'Build the measurement systems and governance structure needed to track and improve learner retention across the entire enterprise.',
     sponsor: 'Dean Boulware', lead: 'Terri Yates', pm: 'Chris Blakley', lastUpdated: '2026-06-02',
@@ -389,10 +391,10 @@ const DATA = [
     ]
   },
   {
-    id: 2, icon: '⚙️', iconClass: 'p3', num: 'Pillar 3',
-    name: 'Unified Operations Framework',
+    id: 2, icon: '⚙️', iconClass: 'p3', num: 'Steering Team 3',
+    name: 'Academic Operations',
     rewire: 'Build a data-driven academic operating environment with clear governance, financial transparency, and scalable infrastructure',
-    objective: 'Activate governance structures, financial visibility, and operating models that remove friction and enable all four REWIRE 2030 pillars to execute.',
+    objective: 'Activate governance structures, financial visibility, and operating models that remove friction and enable all four OKR Scorecards pillars to execute.',
     sponsor: 'Dean Boulware', lead: "Chris O'Byrne", pm: 'Claire Hess', lastUpdated: '2026-06-02',
     keyRisk: 'Unresolved governance, budget process, and operating model decisions continue to create execution friction across all four pillars.',
     decision: 'Cabinet must confirm: decision-rights model, intake workflow timing, N3–N8 operating model approach, and sequencing for 2027 budget, CAPTURE deployment, and faculty planning.',
@@ -417,8 +419,8 @@ const DATA = [
     ]
   },
   {
-    id: 3, icon: '💡', iconClass: 'p4', num: 'Pillar 4',
-    name: 'Innovation &amp; Commercialization',
+    id: 3, icon: '💡', iconClass: 'p4', num: 'Steering Team 4',
+    name: 'Partnerships &amp; Translation',
     rewire: 'Establish 10 major academic-industry partnerships · Commercialize 50 licensed products or care innovations',
     objective: 'Stand up the First-in-Human (FIH) Accelerator — a structured pathway to move discoveries from the lab to early clinical testing with governance and investment backing.',
     sponsor: 'Dean Boulware', lead: 'Terry Hales', pm: 'Maria Jessup', lastUpdated: '2026-06-02',
@@ -452,7 +454,7 @@ function sLabel(s){ return s>=0.7?'On Track ✓':s>=0.4?'In Progress':'Needs Att
 function sBadge(s){ return s>=0.7?'badge-on-track':s>=0.4?'badge-in-progress':'badge-needs-attn'; }
 function sCardClass(s){ return s>=0.7?'s-on-track':s>=0.4?'s-in-progress':'s-needs-attn'; }
 function avg(arr){ return arr.reduce((a,k)=>a+k.score,0)/arr.length; }
-function isSweet(s){ return s>=0.6&&s<=0.7; }
+function isTarget(s){ return s>=0.6&&s<=0.7; }
 function disp(s){ return (s*10).toFixed(1); }
 function statusDot(st){ return st==='on-track'?'#008C95':st==='needs-attn'?'#53565A':'#9E7E38'; }
 function statusLbl(st){ return st==='on-track'?'On Track':st==='needs-attn'?'Needs Attention':'In Progress'; }
@@ -469,9 +471,9 @@ function navActive(i){ document.querySelectorAll('.np').forEach((p,j)=>p.classLi
 /* ── INIT ─────────────────────────────────────────────────── */
 function init(){
   PILLARS=JSON.parse(JSON.stringify(DATA));
-  try{DECISIONS=JSON.parse(localStorage.getItem('r30_dec')||'[]');}catch{DECISIONS=[];}
-  document.getElementById('connDot').className='conn-dot off';
-  document.getElementById('connLbl').textContent='Ready';
+  try{DECISIONS=JSON.parse(localStorage.getItem('wfusm_dec')||'[]');}catch{DECISIONS=[];}
+  
+  
   document.getElementById('loading').style.display='none';
   renderDashboard();
 }
@@ -497,12 +499,12 @@ function buildCard(p){
   const cc=sCardClass(a);
   /* Needs Attention filter fires only when avg < 0.25 (2.5/10) */
   const df=`${p.decision?'input ':''}${a<0.25?'attn':''}`;
-  const zone=isSweet(a)
+  const zone=isTarget(a)
     ?'🎯 Target zone — like hitting 70% of your grant aims: excellent'
     :a>=0.7?'Strong progress — confirm goals remain ambitious'
     :a>=0.4?'Making progress — review any blockers'
     :'Early stage — may need attention';
-  return`<div class="pcard ${cc}" id="card-${p.id}" onclick="showPillar(${p.id})" data-filter="${df}">
+  return`<div class="pcard ${cc}" id="card-${p.id}" onclick="showTeam(${p.id})" data-filter="${df}">
     <div class="card-top">
       <div class="card-id">
         <div class="c-icon ${p.iconClass}">${p.icon}</div>
@@ -523,7 +525,7 @@ function buildCard(p){
         <span class="score-denom">/10</span>
       </div>
       <div class="score-right">
-        <div class="score-label-lg" style="color:${sColor(a)}">${sLabel(a)}${isSweet(a)?' 🎯':''}</div>
+        <div class="score-label-lg" style="color:${sColor(a)}">${sLabel(a)}${isTarget(a)?' 🎯':''}</div>
         <div class="score-bar-track"><div class="score-bar-fill" style="width:${a*100}%;background:${sColor(a)}"></div></div>
         <div class="score-zone">${zone}</div>
       </div>
@@ -543,7 +545,7 @@ function renderDashboard(){
     buildInputNeeded()+
     `<div class="pg-hdr">
       <h1>Steering Team Scorecards</h1>
-      <div class="pg-hdr-sub">REWIRE 2030 · WFUSM Academic Cabinet · FY2026</div>
+      <div class="pg-hdr-sub">OKR Scorecards · WFUSM Academic Cabinet · FY2026</div>
       <div class="pg-tags">
         <span class="ptag">4 Strategic Pillars</span>
         <span class="ptag">Score: 0–10 &nbsp;·&nbsp; Target Zone: 6–7</span>
@@ -609,7 +611,7 @@ function logDec(pid){
     decision:txt.trim(),madeBy,linkedM,timestamp:new Date().toISOString(),
     dateDisplay:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})};
   DECISIONS.unshift(d);
-  try{localStorage.setItem('r30_dec',JSON.stringify(DECISIONS));}catch{}
+  try{localStorage.setItem('wfusm_dec',JSON.stringify(DECISIONS));}catch{}
   document.getElementById('decText-'+pid).value='';
   document.getElementById('decList-'+pid).innerHTML=renderPillarDecs(pid);
   toast('Decision recorded ✓','#008C95');
@@ -618,7 +620,7 @@ function logDec(pid){
 function deleteDec(did,pid){
   if(!confirm('Remove this decision from the log?'))return;
   DECISIONS=DECISIONS.filter(d=>d.id!==did);
-  try{localStorage.setItem('r30_dec',JSON.stringify(DECISIONS));}catch{}
+  try{localStorage.setItem('wfusm_dec',JSON.stringify(DECISIONS));}catch{}
   const dl=document.getElementById('decList-'+pid);
   if(dl)dl.innerHTML=renderPillarDecs(pid);else showDecisions();
   toast('Removed','#9E7E38');
@@ -628,7 +630,7 @@ function deleteDec(did,pid){
 function buildDetail(p){
   const a=avg(p.measures);
   const rc=a>=0.7?'on-track':a>=0.4?'in-progress':'needs-attn';
-  const zone=isSweet(a)
+  const zone=isTarget(a)
     ?'🎯 Target zone — like hitting 70% of grant aims: excellent progress'
     :a>=0.7?'Strong execution — confirm goals remain ambitious'
     :a>=0.4?'Making progress — review blockers if needed'
@@ -646,7 +648,7 @@ function buildDetail(p){
     <td>
       <div class="score-cell">
         <span class="score-cell-num" style="color:${sColor(m.score)}">${disp(m.score)}</span>
-        <span class="score-cell-lbl" style="color:${sColor(m.score)}">${sLabel(m.score)}${isSweet(m.score)?' 🎯':''}</span>
+        <span class="score-cell-lbl" style="color:${sColor(m.score)}">${sLabel(m.score)}${isTarget(m.score)?' 🎯':''}</span>
         <div class="score-cell-bar"><div class="score-cell-fill" style="width:${m.score*100}%;background:${sColor(m.score)}"></div></div>
       </div>
     </td>
@@ -685,7 +687,7 @@ function buildDetail(p){
       </div>
       <div class="dh-score-col">
         <div class="dh-score-num" style="color:${sColor(a)}">${disp(a)}<span style="font-size:.9rem;color:var(--text-sub);font-weight:500">/10</span></div>
-        <div class="dh-score-lbl" style="color:${sColor(a)}">${sLabel(a)}${isSweet(a)?' 🎯':''}</div>
+        <div class="dh-score-lbl" style="color:${sColor(a)}">${sLabel(a)}${isTarget(a)?' 🎯':''}</div>
         <div class="dh-score-note">
           ${zone}
           <span class="ii" data-tip="<strong>The grant analogy:</strong><br>Think of this pillar like a grant with ambitious aims. Hitting 70% of milestones (7/10) is excellent. The target zone is 6–7. Scoring 10 every time would mean goals were not ambitious enough.">ℹ</span>
@@ -723,7 +725,7 @@ function buildDetail(p){
       <th data-tip="The specific outcome we need to achieve — what success looks like.">What We're Measuring</th>
       <th data-tip="The exact number or milestone we committed to this cycle.">Target</th>
       <th data-tip="Where things stand right now, updated by the Project Manager.">Current Status</th>
-      <th data-tip="Progress score from 0–10. Like a grant with ambitious aims: hitting 70% of milestones (7/10) is excellent. Target zone is 6–7. Consistently scoring 10 would mean goals were not ambitious enough.">Score (0–10) ℹ</th>
+      <th data-tip="Progress score from 0–10. Like a grant with ambitious aims: hitting 70% of milestones (7/10) is excellent. Target zone is 6–7. Consistently scoring 10 would mean goals were not ambitious enough.">Confidence % ℹ</th>
       <th data-tip="Person accountable for this result. The ⚠ icon shows what could slow progress — hover to see.">Owner ℹ</th>
     </tr></thead>
     <tbody>${mRows}</tbody>
@@ -749,7 +751,7 @@ function buildDetail(p){
   <div class="sec-hdr">
     <div class="sec-title">
       Long-Range Targets
-      <span class="ii" data-tip="<strong>Long-Range Targets</strong> are the multi-year REWIRE 2030 destination numbers. These are different from annual progress scores — they show where we are trying to get to by 2030, not how we are doing this cycle.">ℹ</span>
+      <span class="ii" data-tip="<strong>Long-Range Targets</strong> are the multi-year OKR Scorecards destination numbers. These are different from annual progress scores — they show where we are trying to get to by 2030, not how we are doing this cycle.">ℹ</span>
     </div>
     <span class="stag stag-teal">Multi-Year Horizon</span>
     <span class="sec-note" style="font-style:italic">Destination metrics — separate from annual scores</span>
@@ -775,7 +777,7 @@ function buildDetail(p){
   </div>`;
 }
 
-function showPillar(id){
+function showTeam(id){
   currentPillarId=id;
   const p=PILLARS[id];
   const dv=document.getElementById('detail-view');
@@ -815,7 +817,7 @@ function saveChanges(pid){
   });
   p.lastUpdated=new Date().toISOString().split('T')[0];
   const lu=document.getElementById('luDate');if(lu)lu.textContent=p.lastUpdated;
-  try{localStorage.setItem('r30_pillars',JSON.stringify(PILLARS));}catch{}
+  try{localStorage.setItem('wfusm_pillars',JSON.stringify(PILLARS));}catch{}
   document.getElementById('saveBtn').style.display='none';
   document.querySelectorAll('#detail-view .editable-cell').forEach(c=>c.contentEditable='false');
   const eb=document.querySelector('#detail-view .btn-nav');if(eb)eb.textContent='✏ Edit';
@@ -839,7 +841,7 @@ function showDecisions(){
   document.getElementById('decisions-view').innerHTML=
     `<div class="pg-hdr">
       <div class="gdec-hdr">📋 Cabinet Decisions Log</div>
-      <div class="gdec-sub">${DECISIONS.length} decision${DECISIONS.length!==1?'s':''} recorded · REWIRE 2030 · FY2026</div>
+      <div class="gdec-sub">${DECISIONS.length} decision${DECISIONS.length!==1?'s':''} recorded · OKR Scorecards · FY2026</div>
     </div>
     ${DECISIONS.length
       ?`<div class="tw"><table>
@@ -861,11 +863,38 @@ function showDecisions(){
 /* ── KEYBOARD NAV ─────────────────────────────────────────── */
 document.addEventListener('keydown',e=>{
   if(document.getElementById('detail-view').style.display==='none')return;
-  if(e.key==='ArrowRight'&&currentPillarId<3)showPillar(currentPillarId+1);
-  if(e.key==='ArrowLeft'&&currentPillarId>0)showPillar(currentPillarId-1);
+  if(e.key==='ArrowRight'&&currentPillarId<3)showTeam(currentPillarId+1);
+  if(e.key==='ArrowLeft'&&currentPillarId>0)showTeam(currentPillarId-1);
   if(e.key==='Escape')showDashboard();
 });
 
+
+/* OKR: Edit Mode + Lock */
+var STATE={editMode:false,locked:false};
+var editModeBtn=document.getElementById('editModeBtn');
+var lockBtn=document.getElementById('lockBtn');
+var lockIndicator=document.getElementById('lockIndicator');
+function toggleEditMode(){
+  if(STATE.locked){toast('Unlock first to enable editing.','#53565A');return;}
+  STATE.editMode=!STATE.editMode;
+  editModeBtn.innerHTML='&#9998; Edit Mode: '+(STATE.editMode?'ON':'OFF');
+  editModeBtn.classList.toggle('active-edit',STATE.editMode);
+  toast(STATE.editMode?'Edit Mode ON — click any field to edit':'Edit Mode OFF',
+        STATE.editMode?'#008C95':'#53565A');
+}
+function toggleLock(){
+  STATE.locked=!STATE.locked;
+  if(STATE.locked){
+    STATE.editMode=false;
+    editModeBtn.innerHTML='&#9998; Edit Mode: OFF';
+    editModeBtn.classList.remove('active-edit');
+    lockIndicator.classList.add('visible');
+    toast('Locked — Cabinet View Active','#003B5C');
+  } else {
+    lockIndicator.classList.remove('visible');
+    toast('Unlocked — editing available','#9E7E38');
+  }
+}
 window.onload=init;
 </script>
 </body>
